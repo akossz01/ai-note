@@ -52,4 +52,5 @@ export class HeaderComponent {
       this.renderer.addClass(menuBtn, 'open');
     });
   }
+  
 }
