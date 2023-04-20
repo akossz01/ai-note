@@ -1,5 +1,9 @@
 <div>
-    <h1>Voice recognition</h1>
-    <i id="mic-btn" class="fa-solid fa-microphone" (click)="onMicClick()"></i>
+    <div class="buttons">
+        <i id="mic-btn" class="fa-solid fa-microphone speech" (click)="onMicClick()"></i>
+        <i class="fa-solid fa-message"></i>
+        <i class="fa-solid fa-image"></i>
+    </div>
     <input type="text" value="{{service.text}}" placeholder="Type or record your prompt...">
+    <i class="fa-solid fa-paper-plane"></i>
 </div>
