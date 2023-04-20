@@ -7,16 +7,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SpeechToTextComponent,
+    SpeechToTextComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
