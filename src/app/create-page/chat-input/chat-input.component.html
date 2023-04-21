@@ -5,8 +5,8 @@
             <button class="getImage" type="button" class="btn btn-outline-secondary">Get Image</button>
         </div>
         <div class="formRow2">
-            <input type="text" class="inputField">
-            <button type="button" class="btn btn-outline-success">Send</button>
+            <input type="text" [(ngModel)]="inputValue" name="inputValue" class="inputField">
+            <button type="button" class="btn btn-outline-success" (click)="getResponse()">Send</button>
         </div>
         <div class="formRow3">
             <button class="record" type="button" class="btn btn-outline-danger">Record</button>
