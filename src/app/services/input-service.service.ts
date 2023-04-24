@@ -6,22 +6,39 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class InputServiceService {
-  apiURL: string = 'https://api.openai.com/v1/engines/davinci/completions';
+  apiTextURL: string = 'https://api.openai.com/v1/chat/completions';
+  apiImageURL: string = 'https://api.openai.com/v1/images/generations';
 
   constructor(private http:HttpClient) { }
 
-  getResponse(input: string): Observable<any>{
+  getTextResponse(input: string): Observable<any>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer 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'
+      'Authorization': 'Bearer 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'
     });
 
     const data = {
-      'prompt': input,
+      'model': 'gpt-3.5-turbo',
+      'messages': [{'role': 'user', 'content': input}],
       'max_tokens': 100,
       'temperature': 0.3
     };
 
-    return this.http.post(this.apiURL, data, {headers});
+    return this.http.post(this.apiTextURL, data, {headers});
+  }
+
+  getImageResponse(input: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer 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'
+    });
+
+    const data = {
+      "prompt": input,
+      "n": 1,
+      "size": "1024x1024"
+    };
+
+    return this.http.post(this.apiImageURL, data, {headers});
   }
 }
