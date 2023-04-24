@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ElementRef, Output } from '@angular/core';
 import { SpeechRecognitionService } from '../services/speech-recognition.service'
 import { ChatGptServiceComponent } from '../services/chat-gpt-service/chat-gpt-service.component';
-
+import { HttpClient } from '@angular/common/http';
 /*
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -25,12 +25,21 @@ export class SpeechToTextComponent implements OnInit{
   //------------ Output
   public response: string =''; // Inputul utilizatorului
   output: string ='';
+  imageUrl: string = ''; // URL-ul imaginii generate
+  http: any;
 
   onSubmit(){
     this.chatGptService.completePrompt(this.response).subscribe(
       response => {
         this.output = response;
-       /* this.output = response.choices[0]?.text || '';*/
+       /*
+       if (response['imageUrl']) {
+        this.imageUrl = response['imageUrl'];
+      } else {
+        this.imageUrl = '';
+      }
+      */
+      
       },
       error => {
         console.error('Error at ChatGPT respone', error);
@@ -38,6 +47,21 @@ export class SpeechToTextComponent implements OnInit{
       
     );
   }
+
+ 
+  searchImage(query: string){
+    const apiKey = '';
+    const cx = '';
+    const searchType = 'image';
+    const numResults = 1;
+
+    const apiUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${query}&searchType=${searchType}&num=${numResults}`;
+
+    
+  }
+ 
+
+
 
   onInputChange(event: any){
 
