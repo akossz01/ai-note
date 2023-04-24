@@ -26,19 +26,15 @@ export class SpeechToTextComponent implements OnInit{
   public response: string =''; // Inputul utilizatorului
   output: string ='';
   imageUrl: string = ''; // URL-ul imaginii generate
-  http: any;
+  showImage: boolean = false;
+ 
 
   onSubmit(){
     this.chatGptService.completePrompt(this.response).subscribe(
       response => {
         this.output = response;
-       /*
-       if (response['imageUrl']) {
-        this.imageUrl = response['imageUrl'];
-      } else {
-        this.imageUrl = '';
-      }
-      */
+
+        /*this.generateImage(); // Apelăm funcția de generare a imaginii după ce primim răspunsul de la ChatGptServiceComponent */
       
       },
       error => {
@@ -48,18 +44,38 @@ export class SpeechToTextComponent implements OnInit{
     );
   }
 
- 
-  searchImage(query: string){
-    const apiKey = '';
-    const cx = '';
-    const searchType = 'image';
-    const numResults = 1;
+  generateImage() {
+    // Facem o cerere către Google Images API pentru a căuta imagini relevante pe baza descrierii întrebării
+    this.http
+      .get('https://www.googleapis.com/customsearch/v1', {
+        params: {
+          q: this.output, // Descrierea întrebării
+          cx: 'e55ce67c8bedd4b8b', // ID-ul motorului de căutare personalizat Google
+          key: 'AIzaSyAqALx2qpgICxDvjKBVgZqyURqfMS2Auk8', // Cheia API de la Google
+          searchType: 'image', // Specificăm că vrem rezultate doar de tip imagine
+        },
+      })
+      .subscribe(
+        (response: any) => {
+          // Procesăm răspunsul API-ului
+          if (response.items && response.items.length > 0) {
+            // Verificăm dacă există imagini în răspuns
+            this.imageUrl = response.items[0].link; // Salvăm URL-ul primei imagini în variabila de instanță imageUrl
+            this.showImage = true;
+          } else {
+            this.imageUrl = ''; // Dacă nu există imagini, resetăm URL-ul imaginii
+            this.showImage = true;
+          }
+        },
+        (error) => {
+          console.error('Error at Google Images API', error);
+        }
 
-    const apiUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${query}&searchType=${searchType}&num=${numResults}`;
-
-    
+        
+      );
+      this.showImage = true;
   }
- 
+  
 
 
 
@@ -71,7 +87,8 @@ export class SpeechToTextComponent implements OnInit{
 
   //---------Output
 
-  constructor(public service : SpeechRecognitionService, private renderer: Renderer2, private el: ElementRef,  private chatGptService: ChatGptServiceComponent) { 
+  constructor(public service : SpeechRecognitionService, private renderer: Renderer2, private el: ElementRef,  private chatGptService: ChatGptServiceComponent,
+    private http: HttpClient) { 
     this.service.init()
   }
   

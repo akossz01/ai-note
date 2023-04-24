@@ -10,13 +10,16 @@
     <input [(ngModel)]="response" value="{{service.text}}" placeholder="Type or record your question..."> 
     
     <button (click)="onSubmit()">Get Answer</button>
-    <button>Generate Image</button>
+
+    <button  (click)="generateImage()" >Generate Image</button>
+      
+
 
     <div class="textBoxResponse">
         <textarea [(ngModel)]="output" rows="8" cols="70" readonly></textarea>
-        
     </div>
 
+    
     <img [src]="imageUrl" *ngIf="imageUrl" />
     
     <i class="fa-solid fa-paper-plane"></i>
