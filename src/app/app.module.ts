@@ -6,13 +6,15 @@ import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
+import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SpeechToTextComponent
+    SpeechToTextComponent,
+    SpeechDemoComponent,
   ],
   imports: [
     BrowserModule,
