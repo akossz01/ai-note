@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import authData from '../../assets/authentication';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +9,16 @@ import { Observable } from 'rxjs/internal/Observable';
 export class InputServiceService {
   apiTextURL: string = 'https://api.openai.com/v1/chat/completions';
   apiImageURL: string = 'https://api.openai.com/v1/images/generations';
+  authorization: string = authData.authorization;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    this.authorization = authData.authorization;
+   }
 
   getTextResponse(input: string): Observable<any>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer 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'
+      'Authorization': 'Bearer ' + this.authorization
     });
 
     const data = {
@@ -30,7 +34,7 @@ export class InputServiceService {
   getImageResponse(input: string): Observable<any>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer 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'
+      'Authorization': 'Bearer ' + this.authorization
     });
 
     const data = {

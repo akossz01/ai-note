@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Configuration, OpenAIApi } from 'openai';
 import { InputServiceService } from 'src/app/services/input-service.service';
 
 @Component({
