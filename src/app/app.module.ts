@@ -9,17 +9,35 @@ import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component
 import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // for [(ngModel)]
+
+
+
+
+
+import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-service.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SpeechToTextComponent,
+
     SpeechDemoComponent,
+
+    ChatGptServiceComponent,
+    
+    
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
