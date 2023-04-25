@@ -13,6 +13,7 @@ import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
   declarations: [
     AppComponent,
     HeaderComponent,
+    SpeechDemoComponent
   ],
   imports: [
     BrowserModule,
