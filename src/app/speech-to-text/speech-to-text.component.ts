@@ -2,13 +2,14 @@ import { Component, OnInit, Renderer2, ElementRef, Output } from '@angular/core'
 import { SpeechRecognitionService } from '../services/speech-recognition.service'
 import { ChatGptServiceComponent } from '../services/chat-gpt-service/chat-gpt-service.component';
 import { HttpClient } from '@angular/common/http';
+
 /*
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 */
 
-
-
+import * as sharp from 'sharp'; 
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 
 @Component({
@@ -27,6 +28,9 @@ export class SpeechToTextComponent implements OnInit{
   output: string ='';
   imageUrl: string = ''; // URL-ul imaginii generate
   showImage: boolean = false;
+  imageCropper: any;
+
+  
  
 
   onSubmit(){
@@ -62,6 +66,34 @@ export class SpeechToTextComponent implements OnInit{
             // Verificăm dacă există imagini în răspuns
             this.imageUrl = response.items[0].link; // Salvăm URL-ul primei imagini în variabila de instanță imageUrl
             this.showImage = true;
+
+            
+            const img = new Image();
+            img.onload = () => {
+              // Cream un canvas pentru a desena imaginea redimensionată
+              const canvas = document.createElement('canvas');
+              const ctx = canvas.getContext('2d');
+
+              // Setăm dimensiunile canvasului la 500x500
+              if (ctx != null){
+              canvas.width = 500;
+              canvas.height = 500;
+
+              // Desenăm imaginea redimensionată pe canvas
+              ctx.drawImage(img, 0, 0, 500, 500);
+
+              // Convertim canvasul într-un URL de imagine și îl asignăm în variabila de instanță imageUrl
+              this.imageUrl = canvas.toDataURL('image/jpeg');
+              this.showImage = true;
+              }
+            };
+            img.src = this.imageUrl; 
+
+
+
+
+
+
           } else {
             this.imageUrl = ''; // Dacă nu există imagini, resetăm URL-ul imaginii
             this.showImage = true;
@@ -73,7 +105,7 @@ export class SpeechToTextComponent implements OnInit{
 
         
       );
-      this.showImage = true;
+      
   }
   
 
