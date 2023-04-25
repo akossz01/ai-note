@@ -8,11 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SpeechDemoComponent,
   ],
   imports: [
     BrowserModule,

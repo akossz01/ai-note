@@ -1,9 +1,28 @@
 <div>
     <div class="buttons">
-        <i id="mic-btn" class="fa-solid fa-microphone speech" (click)="onMicClick()"></i>
+         <i id="mic-btn" class="fa-solid fa-microphone speech" (click)="onMicClick()"></i> 
+        
         <i class="fa-solid fa-message"></i>
         <i class="fa-solid fa-image"></i>
     </div>
-    <input type="text" value="{{service.text}}" placeholder="Type or record your prompt...">
+    <!--<input type="text" value="{{service.text}}" placeholder="Type or record your prompt..."> -->
+
+    <input [(ngModel)]="response" value="{{service.text}}" placeholder="Type or record your question..."> 
+    
+    <button (click)="onSubmit()">Get Answer</button>
+
+    
+    <button  (click)="generateImage()" >Generate Image</button>
+    
+    
+
+    <div class="textBoxResponse">
+        <textarea [(ngModel)]="output" rows="8" cols="70" readonly></textarea>
+    </div>
+
+    
+    <img [src]="imageUrl" *ngIf="imageUrl" />
+    
     <i class="fa-solid fa-paper-plane"></i>
 </div>
+
