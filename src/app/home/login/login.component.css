@@ -24,3 +24,7 @@
     color: white;
     height: 40px;
   }
+
+  .errorText {
+    color: red;
+}

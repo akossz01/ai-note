@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { LoginComponent } from './home/login/login.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatIconModule,
     FormsModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatBottomSheetModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
