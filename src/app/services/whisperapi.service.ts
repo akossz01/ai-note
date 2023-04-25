@@ -8,9 +8,21 @@ import { catchError, tap } from 'rxjs';
 export class WhisperapiService {
   constructor(private http: HttpClient) { }
 
+  private apiKey: string | undefined;
+
   async convertSpeechToText(file: File): Promise<void> {
     const apiUrl = 'https://api.openai.com/v1/audio/transcriptions';
-    const apiKey = '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';
+    const apiKey = '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';
+
+    /* - make a new Open AI key
+    - save the key in an external file
+    - put that file in .gitignore */
+
+    /* this.http.get('../../../api_key.txt').subscribe(data => {
+      console.log(data);
+      this.apiKey = data.toString();
+    }); */
+    
     const headers = new HttpHeaders({
       /* 'Content-Type': 'multipart/form-data', */
       'Authorization': `Bearer ${apiKey}`

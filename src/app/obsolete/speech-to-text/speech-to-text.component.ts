@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
-import { SpeechRecognitionService } from '../services/speech-recognition.service'
+import { SpeechRecognitionService } from '../speech-recognition.service';
 
 @Component({
   selector: 'app-speech-to-text',

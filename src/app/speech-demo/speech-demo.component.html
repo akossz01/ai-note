@@ -1,2 +1,12 @@
-<button (click)="onStartRecording()">Start Recording w/ Whisper API</button>
-<button (click)="onStopRecording()">Stop Recording</button>
+<div>
+    <div class="buttons">
+        <i id="mic-btn" class="fa-solid fa-microphone speech" (click)="onMicClick()"></i>
+        <i class="fa-solid fa-message"></i>
+        <i class="fa-solid fa-image"></i>
+    </div>
+    <input type="text" placeholder="Type or record your prompt...">
+    <i class="fa-solid fa-paper-plane"></i>
+</div>
+
+<!-- <button (click)="onStartRecording()">Start Recording w/ Whisper API</button>
+<button (click)="onStopRecording()">Stop Recording</button> -->
