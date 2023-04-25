@@ -26,7 +26,7 @@ export class ChatGptServiceComponent {
     const headers = {
       'Content-Type': 'application/json',
       /*'Authorization':'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' // Înlocuiește API_KEY cu cheia ta de API de la OpenAI*/
-      'Authorization': 'Bearer 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' // Înlocuiește API_KEY cu cheia ta de API de la OpenAI
+      'Authorization': 'Bearer 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' // Înlocuiește API_KEY cu cheia ta de API de la OpenAI
 
     };
 
