@@ -6,13 +6,20 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
+import { ChatInputComponent } from './create-page/chat-input/chat-input.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    SpeechToTextComponent,
+    ChatInputComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
