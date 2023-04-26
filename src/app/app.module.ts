@@ -6,6 +6,7 @@ import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
+import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // for [(ngModel)]
@@ -21,9 +22,13 @@ import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-se
     AppComponent,
     HeaderComponent,
     SpeechToTextComponent,
+
+    SpeechDemoComponent,
+
     ChatGptServiceComponent,
     
     
+
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,7 @@ import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-se
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    
    
   ],
   providers: [],

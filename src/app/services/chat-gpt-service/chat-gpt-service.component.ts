@@ -17,6 +17,9 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 
 export class ChatGptServiceComponent {
+  get(apiUrl: string) {
+    throw new Error('Method not implemented.');
+  }
 
   private apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
 
