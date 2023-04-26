@@ -3,17 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { ChatInputComponent } from './create-page/chat-input/chat-input.component';
+import { HeaderComponent } from './home/header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ChatInputComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

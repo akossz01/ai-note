@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+:root{
+    --blue: #23395d;
+    --dark-blue: #152238;
+    --light-blue: #23395d;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: var(--blue);
+    margin: 0;
+    padding: 0;
+}
