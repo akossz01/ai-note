@@ -61,6 +61,7 @@ export class SpeechDemoComponent {
         const recognizedText = await this.whisper.convertSpeechToText(file);
         console.log(recognizedText);
         this.inputValue = recognizedText;
+        this.getResponse();
     });
   }
 
