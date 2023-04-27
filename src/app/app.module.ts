@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -16,9 +17,26 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 
+import { HeaderComponent } from './home/header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
+import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
+
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // for [(ngModel)]
+
+
+
+
+
+import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-service.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
+
     LoginComponent,
   ],
   imports: [
@@ -34,8 +52,19 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatSnackBarModule,
     MatCheckboxModule,
     MatBottomSheetModule,
-    FormsModule
+    FormsModule,
+
+    HeaderComponent,
+    SpeechToTextComponent,
+
+    SpeechDemoComponent,
+
+    ChatGptServiceComponent,
+    HttpClientModule,
+    ReactiveFormsModule,
+
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

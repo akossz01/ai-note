@@ -1,0 +1,204 @@
+.desktop-header{
+    display: none;
+}
+
+img{
+    height: 55px;
+    cursor: pointer;
+}
+
+.mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    position: sticky;
+    top: 0px;
+    background-color: var(--dark-blue);
+    padding: 10px 25px;
+
+    z-index: 100;
+}
+
+.mobile-menu ul li i{
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+i{
+    cursor: pointer;
+    color: white;
+    font-size: 36px;
+}
+
+.mobile-menu{
+    display: none;
+    /* background: var(--blue); */
+    background: #f78a31;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+
+    transform: translateY(-200px);
+    z-index: -1;
+}
+
+.fade-in{
+    transform: translateY(0px);
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.fade-out{
+    transform: translateY(-200px);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-menu ul{
+    list-style: none;
+    font-weight: bold;
+    margin: 0;
+    padding: 25px 0;
+}
+
+.mobile-menu ul li{
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hamburger Navigation Button */
+
+#menu-btn{
+    width: 60px;
+    height: 45px;
+    position: relative;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    
+    transform: scale(0.8);
+}
+  
+#menu-btn span{
+    display: block;
+    position: absolute;
+    height: 9px;
+    width: 100%;
+    background: white;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+}
+
+#menu-btn span:nth-child(1) {
+    top: 0px;
+}
+
+#menu-btn span:nth-child(2),#menu-btn span:nth-child(3) {
+    top: 18px;
+}
+
+#menu-btn span:nth-child(4) {
+    top: 36px;
+}
+
+#menu-btn.open span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+#menu-btn.open span:nth-child(2) {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#menu-btn.open span:nth-child(3) {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+#menu-btn.open span:nth-child(4) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+}
+
+@media screen and (min-width: 600px) {
+    .mobile-header, .mobile-menu{
+        display: none;
+    }
+
+    .desktop-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+        position: sticky;
+        top: 0px;
+        background-color: var(--dark-blue);
+        padding: 10px 25px;
+    }
+
+    .desktop-header ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+    }
+
+    .desktop-header ul li{
+        position:relative;
+        padding: 10px;
+        
+        color: white;
+        background: transparent;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .desktop-header ul li:last-of-type{
+        margin-right: 0;
+    }
+
+    .desktop-header ul li:hover{
+        color: var(--dark-blue);
+        background: white;
+        padding: 5px 10px;
+        border-radius: 25px;
+
+        transition: all 0.2s ease-in-out;
+    }
+
+    .desktop-header ul li:hover > i{
+        color: var(--dark-blue);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .desktop-header ul li i{
+        font-size: 16px;
+        margin-right: 5px;
+    }
+}
