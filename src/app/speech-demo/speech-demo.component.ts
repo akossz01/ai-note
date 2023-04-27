@@ -2,7 +2,7 @@ import { Component, Renderer2, OnInit, ElementRef } from '@angular/core';
 import { AudioRecordService, RecordedAudioOutput } from '../services/audio-record.service';
 import { WhisperapiService } from '../services/whisperapi.service';
 import { FileSaverService } from 'ngx-filesaver';
-import { ChatGptServiceComponent } from '../services/chat-gpt-service/chat-gpt-service.component';
+import { InputServiceService } from '../services/input-service.service';
 
 // Bugs to fix:
 // Saved wav file has no length - WhisperAPI works nonetheless
@@ -15,7 +15,12 @@ import { ChatGptServiceComponent } from '../services/chat-gpt-service/chat-gpt-s
   styleUrls: ['./speech-demo.component.css']
 })
 export class SpeechDemoComponent {
-  constructor(private chatgpt: ChatGptServiceComponent, private whisper: WhisperapiService, private audioRecordService: AudioRecordService, private fileSaverService: FileSaverService, private renderer: Renderer2) { }
+  protected inputValue: string = '';
+  getResponsePressed: boolean = false;
+  getImagePressed: boolean = false;
+  
+
+  constructor(private inputService: InputServiceService, private whisper: WhisperapiService, private audioRecordService: AudioRecordService, private fileSaverService: FileSaverService, private renderer: Renderer2) { }
 
   ngOnInit(): void {
   }
@@ -53,26 +58,34 @@ export class SpeechDemoComponent {
       // Saves the file for the user
       /* this.fileSaverService.save(blob, title); */
 
-      // Calling the conversion function from the service
-      /* const reply = await this.whisper.convertSpeechToText(file);
-      console.log(reply); */
-
-      /* this.chatgpt.completePrompt(await this.whisper.convertSpeechToText(file)).subscribe(response => {
-        console.log(response);
-      }); */
-
-      this.whisper.convertSpeechToText(file).then(prompt => {
-        console.log('User prompt:', prompt);
-      
-        this.chatgpt.completePrompt(prompt).subscribe(response => {
-          console.log('ChatGPT response:', response);
-        });
-      });
-
-
-
-      /* this.whisper.convertSpeechToText(file); */
-      
+        const recognizedText = await this.whisper.convertSpeechToText(file);
+        console.log(recognizedText);
+        this.inputValue = recognizedText;
     });
+  }
+
+  getResponse(): void {
+    if (this.getResponsePressed){
+      console.log("Generating reply...")
+      this.inputService.getTextResponse(this.inputValue).subscribe(response => {
+        console.log(response.choices[0].message.content);
+      });
+    }
+    else{
+      console.log("Generating image...")
+      this.inputService.getImageResponse(this.inputValue).subscribe(response => {
+        console.log(response.data[0].url);
+      });
+    }
+  }
+
+  getText() {
+    this.getResponsePressed = true;
+    this.getImagePressed = false;
+  }
+
+  getImage() {
+    this.getImagePressed = true;
+    this.getResponsePressed = false;
   }
 }

@@ -1,0 +1,15 @@
+<div>
+    <form class="inputContainer">
+        <div class="formRow1">
+            <button class="getAnswer" type="button" class="btn btn-outline-secondary" (click)="getText()" [ngStyle]="getAnswerButtonStyle()">Get Answer</button>
+            <button class="getImage" type="button" class="btn btn-outline-secondary" (click)="getImage()" [ngStyle]="getImageButtonStyle()">Get Image</button>
+        </div>
+        <div class="formRow2">
+            <input type="text" [(ngModel)]="inputValue" name="inputValue" class="inputField">
+            <button type="button" class="btn btn-outline-success" (click)="getResponse()">Send</button>
+        </div>
+        <div class="formRow3">
+            <button class="record" type="button" class="btn btn-outline-danger">Record</button>
+        </div>
+    </form>
+</div>
