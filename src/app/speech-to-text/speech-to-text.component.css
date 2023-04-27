@@ -1,32 +1,90 @@
+.image-wrapper {
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+
+.textBoxResponse{
+    position: relative;
+    left: -425px;
+    top: -480px;
+
+}
+
+.imageDim {
+    width: 300px; 
+    height: 200px; 
+    object-fit: cover; 
+  }
+  
+
+
+
 div{
     display: flex;
     justify-content: center;
-    align-items: flex;
-    flex-direction: column;
-    padding: 15px;
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    flex-wrap: wrap;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
 }
 
 h1, p{
     color: white;
 }
 
-button{
-    margin: 0;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 25px;
-    margin-bottom: 10px;
-}
-
 input{
     width: 300px;
+    height: 30px;
     padding: 10px 15px;
     border-radius: 25px;
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
-i{
+.fa-paper-plane{
+    color: var(--dark-blue);
+    font-size: 20px;
+    margin-left: -40px;
+    cursor: pointer;
+    margin-top: -10px;
+}
+
+.fa-paper-plane:hover{
+    transform: translateY(-3px) translateX(3px);
+    transition: all 0.3s ease-in-out;
+}
+
+.speech{
     color: white;
-    font-size: 36px;
+    font-size: 20px;
     /* background: var(--dark-blue); */
     background: #f78a31;
     padding: 15px;
@@ -34,10 +92,22 @@ i{
     width: 1em;
     text-align: center;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-left: 30px;
 }
 
-@keyframes pulse {
+.fa-message, .fa-image{
+    color: white;
+    background: #f78a31;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 50%;
+    width: 1em;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+@keyframes pulse{
     0% {
       transform: scale(1);
     }
@@ -49,9 +119,21 @@ i{
     }
 }
 
-.pulse-animation {
+.pulse-animation{
     animation-name: pulse;
     animation-duration: 1.2s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
 }
+
+@media screen and (min-width: 600px) {
+    .break{
+        display: none;
+    }
+
+    input{
+        width: 500px;
+    }
+}
+
+

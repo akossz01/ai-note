@@ -6,10 +6,10 @@ import { Renderer2, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  showMenu = false;
+  showMenu: boolean = false;
 
   constructor(private router: Router, private renderer: Renderer2, private el: ElementRef) {
 
@@ -25,21 +25,30 @@ export class HeaderComponent {
 
     if(!this.showMenu) { // If the menu is hidden
       this.renderer.setStyle(mobileMenu, 'display', 'block');
-      this.renderer.setStyle(mobileMenu, 'animation', 'slideInFromTop 0.5s ease'); // Add slide-in animation
+      setTimeout(() => {
+        this.renderer.addClass(mobileMenu, 'fade-in');
+      }, 10);
+      this.renderer.removeClass(mobileMenu, 'fade-out');
 
       // Change Icon To X
-      this.renderer.listen(menuBtn, 'click', () => {
-        this.renderer.addClass(menuBtn, 'open');
-      });
+      this.renderer.addClass(menuBtn, 'open');
+      console.log('added open');
     } else {
-      this.renderer.setStyle(mobileMenu, 'animation', 'slideOutToTop 0.5s ease'); // Add slide-out animation
-      
-      this.renderer.setStyle(mobileMenu, 'display', 'none');
+      setTimeout(() => {
+        this.renderer.removeClass(mobileMenu, 'fade-in');
+      }, 10);
+      this.renderer.addClass(mobileMenu, 'fade-out');
+      setTimeout(() => {
+        this.renderer.setStyle(mobileMenu, 'display', 'none');
+      }, 300);
 
       // Change Icon To Bars
-      this.renderer.listen(menuBtn, 'click', () => {
+      // Renderer2 manipulations are async
+      // Must use timeout
+      setTimeout(() => {
         this.renderer.removeClass(menuBtn, 'open');
-      });
+      }, 10);
+      console.log('removed open');
     }
 
     this.showMenu = !this.showMenu;
