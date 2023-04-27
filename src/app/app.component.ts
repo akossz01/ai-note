@@ -11,5 +11,12 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
- 
+
+  isLoggedIn = false;
+
+  
+  login() {
+    this.isLoggedIn = true;
+  }
+  
 }

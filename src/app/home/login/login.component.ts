@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -20,6 +20,8 @@ export class LoginComponent {
  sameError: boolean = false;
  lengthError: boolean = false;
  checkError: boolean = false;
+
+ @Output() onLogin = new EventEmitter();
 
   constructor(private snackBar:MatSnackBar){
 
@@ -45,8 +47,9 @@ export class LoginComponent {
   }
 
   login() {
-    if(this.email=="notes@ai.com" && this.password=="notes" && this.checkbox == true){
+    if(this.email=="admin@yahoo.com" && this.password=="admin"){
         this.snackBar.open('Login Successful','',{duration:1000})
+        this.onLogin.emit();
     }else{
       this.snackBar.open('Login error','',{duration:1000})
     }
