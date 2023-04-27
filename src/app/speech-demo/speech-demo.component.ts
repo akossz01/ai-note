@@ -2,6 +2,7 @@ import { Component, Renderer2, OnInit, ElementRef } from '@angular/core';
 import { AudioRecordService, RecordedAudioOutput } from '../services/audio-record.service';
 import { WhisperapiService } from '../services/whisperapi.service';
 import { FileSaverService } from 'ngx-filesaver';
+import { ChatGptServiceComponent } from '../services/chat-gpt-service/chat-gpt-service.component';
 
 // Bugs to fix:
 // Saved wav file has no length - WhisperAPI works nonetheless
@@ -14,7 +15,7 @@ import { FileSaverService } from 'ngx-filesaver';
   styleUrls: ['./speech-demo.component.css']
 })
 export class SpeechDemoComponent {
-  constructor(private whisper: WhisperapiService, private audioRecordService: AudioRecordService, private fileSaverService: FileSaverService, private renderer: Renderer2) { }
+  constructor(private chatgpt: ChatGptServiceComponent, private whisper: WhisperapiService, private audioRecordService: AudioRecordService, private fileSaverService: FileSaverService, private renderer: Renderer2) { }
 
   ngOnInit(): void {
   }
@@ -44,7 +45,7 @@ export class SpeechDemoComponent {
 
   onStopRecording() {
     this.audioRecordService.stopRecording();
-    this.audioRecordService.getRecordedBlob().subscribe((audioOutput: RecordedAudioOutput) => {
+    this.audioRecordService.getRecordedBlob().subscribe(async (audioOutput: RecordedAudioOutput) => {
       const blob = audioOutput.blob;
       const title = audioOutput.title;
       const file = new File([blob], title, { type: "audio/mp3" });
@@ -53,7 +54,25 @@ export class SpeechDemoComponent {
       /* this.fileSaverService.save(blob, title); */
 
       // Calling the conversion function from the service
-      this.whisper.convertSpeechToText(file);
+      /* const reply = await this.whisper.convertSpeechToText(file);
+      console.log(reply); */
+
+      /* this.chatgpt.completePrompt(await this.whisper.convertSpeechToText(file)).subscribe(response => {
+        console.log(response);
+      }); */
+
+      this.whisper.convertSpeechToText(file).then(prompt => {
+        console.log('User prompt:', prompt);
+      
+        this.chatgpt.completePrompt(prompt).subscribe(response => {
+          console.log('ChatGPT response:', response);
+        });
+      });
+
+
+
+      /* this.whisper.convertSpeechToText(file); */
+      
     });
   }
 }

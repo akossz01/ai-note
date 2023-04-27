@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Api Key
-api_key.txt
+api_key.ts
