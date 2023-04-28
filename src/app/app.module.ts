@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 import { ChatInputComponent } from './create-page/chat-input/chat-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChatLogComponent } from './chat-log/chat-log.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     SpeechDemoComponent,
     ChatInputComponent,
+    ChatLogComponent,
   ],
   imports: [
     BrowserModule,

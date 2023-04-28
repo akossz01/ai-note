@@ -4,6 +4,9 @@ import { WhisperapiService } from '../services/whisperapi.service';
 import { FileSaverService } from 'ngx-filesaver';
 import { InputServiceService } from '../services/input-service.service';
 
+import { ChatLogComponent } from '../chat-log/chat-log.component';
+import { ChatLogService } from '../services/chat-log.service';
+
 // Bugs to fix:
 // Saved wav file has no length - WhisperAPI works nonetheless
 // After every reply (Excluding the first), you get more replis (n+2)??
@@ -20,7 +23,7 @@ export class SpeechDemoComponent {
   getImagePressed: boolean = false;
   
 
-  constructor(private inputService: InputServiceService, private whisper: WhisperapiService, private audioRecordService: AudioRecordService, private fileSaverService: FileSaverService, private renderer: Renderer2) { }
+  constructor(private inputService: InputServiceService, private chatService: ChatLogService,private whisper: WhisperapiService, private audioRecordService: AudioRecordService, private fileSaverService: FileSaverService, private renderer: Renderer2) { }
 
   ngOnInit(): void {
   }
@@ -65,7 +68,7 @@ export class SpeechDemoComponent {
     });
   }
 
-  getResponse(): void {
+  /* getResponse(): void {
     if (this.getResponsePressed){
       console.log("Generating reply...")
       this.inputService.getTextResponse(this.inputValue).subscribe(response => {
@@ -78,8 +81,27 @@ export class SpeechDemoComponent {
         console.log(response.data[0].url);
       });
     }
-  }
+  } */
 
+  getResponse(): void {
+    if (this.getResponsePressed){
+      console.log("Generating reply...")
+      this.inputService.getTextResponse(this.inputValue).subscribe(response => {
+        const output = response.choices[0].message.content;
+        console.log(output);
+        this.chatService.addChat(this.inputValue, output);
+      });
+    }
+    else{
+      console.log("Generating image...")
+      this.inputService.getImageResponse(this.inputValue).subscribe(response => {
+        const output = response.data[0].url;
+        console.log(output);
+        this.chatService.addChat(this.inputValue, output);
+      });
+    }
+  }
+  
   getText() {
     this.getResponsePressed = true;
     this.getImagePressed = false;
@@ -88,5 +110,12 @@ export class SpeechDemoComponent {
   getImage() {
     this.getImagePressed = true;
     this.getResponsePressed = false;
+  }
+
+  getChats(): void {
+    this.chatService.getChats().subscribe(chats => {
+      console.log(chats);
+      // Here you can assign the chats to a variable in your component to display them in your template
+    });
   }
 }
