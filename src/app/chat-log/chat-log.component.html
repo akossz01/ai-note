@@ -1,1 +1,11 @@
-<p>chat-log works!</p>
+<!-- <div class="chat-log">
+    <p class="input-msg">Hi. My name is Akos</p>
+    <p class="output-msg">Hello. How can I help you?</p>
+    <p class="input-msg">Can you tell me what is the weather like?</p>
+    <p class="output-msg">Unfortunately, no...</p>
+</div> -->
+
+<div *ngFor="let chat of chats" class="chat-log">
+    <p class="input-msg">{{ chat.input }}</p>
+    <p class="output-msg">{{ chat.output }}</p>
+</div>

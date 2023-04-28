@@ -19,7 +19,7 @@ import { ChatLogService } from '../services/chat-log.service';
 })
 export class SpeechDemoComponent {
   protected inputValue: string = '';
-  getResponsePressed: boolean = false;
+  getResponsePressed: boolean = true;
   getImagePressed: boolean = false;
   
 
@@ -63,6 +63,8 @@ export class SpeechDemoComponent {
 
         const recognizedText = await this.whisper.convertSpeechToText(file);
         console.log(recognizedText);
+
+        // Writes the transcription in the input field
         this.inputValue = recognizedText;
         this.getResponse();
     });
@@ -90,6 +92,7 @@ export class SpeechDemoComponent {
         const output = response.choices[0].message.content;
         console.log(output);
         this.chatService.addChat(this.inputValue, output);
+        this.inputValue = '';
       });
     }
     else{
@@ -98,6 +101,7 @@ export class SpeechDemoComponent {
         const output = response.data[0].url;
         console.log(output);
         this.chatService.addChat(this.inputValue, output);
+        this.inputValue = '';
       });
     }
   }

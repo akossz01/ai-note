@@ -8,15 +8,15 @@ import { Observable, of } from 'rxjs';
 })
 export class ChatLogService {
 
-  chats: { input: string, output: string }[] = [];
+  private chats: { input: string, output: string }[] = [];
 
   constructor() { }
 
-  addChat(input: string, output: string): void {
+  public addChat(input: string, output: string): void {
     this.chats.push({ input, output });
   }
 
-  clearChats(): void {
+  public clearChats(): void {
     this.chats = [];
   }
 
@@ -24,7 +24,7 @@ export class ChatLogService {
     return this.chats;
   } */
   
-  getChats(): Observable<{ input: string, output: string }[]> {
+  public getChats(): Observable<{ input: string, output: string }[]> {
     return of(this.chats);
   }
 
