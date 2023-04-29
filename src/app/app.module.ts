@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
@@ -19,19 +20,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
-import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
-
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // for [(ngModel)]
-
-
-
-
-
-import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-service.component';
-
 
 @NgModule({
   declarations: [
@@ -39,8 +28,6 @@ import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-se
     HeaderComponent,
     LoginComponent,
     SpeechToTextComponent,
-    SpeechDemoComponent,
-    ChatGptServiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,8 +49,7 @@ import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-se
 
     
     HttpClientModule,
-    ReactiveFormsModule,
-
+    AppRoutingModule
   ],
 
   providers: [],
