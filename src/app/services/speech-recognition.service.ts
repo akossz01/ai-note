@@ -55,6 +55,8 @@ export class SpeechRecognitionService {
     this.wordConcat()
     this.recognition.stop();
     console.log("End speech recognition")
+    return this.text
+
   }
 
   wordConcat() {

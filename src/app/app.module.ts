@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';import { NgModule } from '@angular/core';
-
-
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +20,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
+import { ChatInputComponent } from './create-page/chat-input/chat-input.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component
     HeaderComponent,
     LoginComponent,
     SpeechToTextComponent,
+    ChatInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,11 +44,6 @@ import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component
     MatCheckboxModule,
     MatBottomSheetModule,
     FormsModule,
-
-    
-   
-
-    
     HttpClientModule,
     AppRoutingModule
   ],

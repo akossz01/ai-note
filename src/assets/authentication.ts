@@ -1,3 +1,3 @@
 export default {
-  "authorization": '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'
+  "authorization": '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'
 }

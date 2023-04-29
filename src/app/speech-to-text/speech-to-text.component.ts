@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 
 import * as sharp from 'sharp'; 
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ChatInputComponent } from '../create-page/chat-input/chat-input.component';
 
 
 @Component({
@@ -29,9 +30,42 @@ export class SpeechToTextComponent implements OnInit{
   imageUrl: string = ''; // URL-ul imaginii generate
   showImage: boolean = false;
   imageCropper: any;
-
-  
  
+  constructor(public service : SpeechRecognitionService, private renderer: Renderer2, private el: ElementRef,  private chatGptService: ChatGptServiceComponent,
+    private http: HttpClient) { 
+    this.service.init()
+  }
+
+  textOutput(newOutput: string){
+    this.output = newOutput;
+  }
+
+  imageOutput(newOutput: string) {
+      this.imageUrl = newOutput; // Salvăm URL-ul primei imagini în variabila de instanță imageUrl
+      this.showImage = true;
+
+      
+      const img = new Image();
+      img.onload = () => {
+        // Cream un canvas pentru a desena imaginea redimensionată
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Setăm dimensiunile canvasului la 500x500
+        if (ctx != null){
+        canvas.width = 500;
+        canvas.height = 500;
+
+        // Desenăm imaginea redimensionată pe canvas
+        ctx.drawImage(img, 0, 0, 500, 500);
+
+        // Convertim canvasul într-un URL de imagine și îl asignăm în variabila de instanță imageUrl
+        this.imageUrl = canvas.toDataURL('image/jpeg');
+        this.showImage = true;
+        }
+      };
+      img.src = this.imageUrl;
+  }
 
   onSubmit(){
     this.chatGptService.completePrompt(this.response).subscribe(
@@ -88,12 +122,6 @@ export class SpeechToTextComponent implements OnInit{
               }
             };
             img.src = this.imageUrl; 
-
-
-
-
-
-
           } else {
             this.imageUrl = ''; // Dacă nu există imagini, resetăm URL-ul imaginii
             this.showImage = true;
@@ -102,8 +130,6 @@ export class SpeechToTextComponent implements OnInit{
         (error) => {
           console.error('Error at Google Images API', error);
         }
-
-        
       );
       
   }
@@ -115,13 +141,6 @@ export class SpeechToTextComponent implements OnInit{
 
     this.response = event.target.value;
 
-  }
-
-  //---------Output
-
-  constructor(public service : SpeechRecognitionService, private renderer: Renderer2, private el: ElementRef,  private chatGptService: ChatGptServiceComponent,
-    private http: HttpClient) { 
-    this.service.init()
   }
   
 
@@ -136,7 +155,7 @@ export class SpeechToTextComponent implements OnInit{
   }
 
   stopService() {
-    this.service.stop()
+    return this.service.stop()
   }
 
   private rec: boolean = false;
@@ -151,16 +170,16 @@ export class SpeechToTextComponent implements OnInit{
 
       // Stop the service after 5 seconds\
       setTimeout(() => {
-        this.stopService();
         this.renderer.removeClass(micBtn, 'pulse-animation');
+        return this.stopService();
       }, 5000);
     } else {
-      this.stopService();
-      
       // Removes rec animation
       this.renderer.removeClass(micBtn, 'pulse-animation');
+      return this.stopService();
     }
 
     this.rec = !this.rec;
+    return;
   }
 }

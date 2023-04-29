@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { InputServiceService } from 'src/app/services/input-service.service';
+import { SpeechToTextComponent } from 'src/app/speech-to-text/speech-to-text.component';
 
 @Component({
   selector: 'app-chat-input',
@@ -11,18 +12,17 @@ export class ChatInputComponent {
   getResponsePressed: boolean = false;
   getImagePressed: boolean = false;
 
-  constructor(private inputService: InputServiceService) {}
+  constructor(private inputService: InputServiceService, private userOutput: SpeechToTextComponent) {}
 
   getResponse(): void {
     if (this.getResponsePressed){
       this.inputService.getTextResponse(this.inputValue).subscribe(response => {
-        console.log(response.choices[0].message.content);
+        this.userOutput.textOutput(response.choices[0].message.content);
       });
     }
     else{
-      console.log("Getting response")
       this.inputService.getImageResponse(this.inputValue).subscribe(response => {
-        console.log(response.data[0].url);
+        this.userOutput.imageOutput(response.data[0].url);
       });
     }
   }
@@ -49,5 +49,12 @@ export class ChatInputComponent {
       'background-color': this.getImagePressed ? '#6c757d' : '#fff',
       'color': this.getImagePressed ? '#fff' : '#6c757d'
     };
+  }
+
+  record(): void{
+    const value = this.userOutput.onMicClick();
+    if (value) {
+      this.inputValue = value;
+    }
   }
 }
