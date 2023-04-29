@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './home/login/login.component';
+import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
 
 const routes: Routes = [
-  {path:'login', component: LoginComponent},
-  
-
+  {path:'', component: LoginComponent},
+  {path:'create-page', component: SpeechToTextComponent}
 ];
 
 @NgModule({

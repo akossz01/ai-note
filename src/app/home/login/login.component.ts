@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent {
 
  @Output() onLogin = new EventEmitter();
 
-  constructor(private snackBar:MatSnackBar){
+  constructor(private snackBar:MatSnackBar, private router: Router){
 
   }
   signup() {
@@ -50,6 +51,8 @@ export class LoginComponent {
     if(this.email=="admin@yahoo.com" && this.password=="admin"){
         this.snackBar.open('Login Successful','',{duration:1000})
         this.onLogin.emit();
+        this.router.navigateByUrl('create-page')
+        
     }else{
       this.snackBar.open('Login error','',{duration:1000})
     }
