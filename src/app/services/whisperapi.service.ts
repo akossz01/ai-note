@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap } from 'rxjs';
+import { catchError, map, tap } from 'rxjs';
+
+import { environment } from 'api_key';
 
 @Injectable({
   providedIn: 'root'
@@ -8,28 +10,39 @@ import { catchError, tap } from 'rxjs';
 export class WhisperapiService {
   constructor(private http: HttpClient) { }
 
-  async convertSpeechToText(file: File): Promise<void> {
+  private apiKey: string | undefined;
+
+  async convertSpeechToText(file: File): Promise<string> {
     const apiUrl = 'https://api.openai.com/v1/audio/transcriptions';
-    const apiKey = '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';
+    const apiKey = environment.apiKey;
+
     const headers = new HttpHeaders({
-      /* 'Content-Type': 'multipart/form-data', */
       'Authorization': `Bearer ${apiKey}`
     });
 
     const formData = new FormData();
     formData.append('model', 'whisper-1');
     formData.append('file', file);
+    
+    let recognizedText: string = 'basic';
 
-    this.http.post(apiUrl, formData, { headers: headers }).subscribe(
-      (response: any) => {
-        console.log('API response:', response);
-        const recognizedText = response[0]?.text;
-        console.log(recognizedText);
-      },
-      (error: any) => {
-        console.error('API error:', error);
-      }
-    );
+    return this.http.post(apiUrl, formData, { headers: headers }).pipe(
+      map((response: any) => {
+        return response.text;
+      })
+    ).toPromise();
+
+    // this.http.post(apiUrl, formData, { headers: headers }).subscribe(
+    //   (response: any) => {
+    //     /* console.log('API response:', response); */
+
+    //     recognizedText = response.text;
+    //     /* console.log(recognizedText); */
+    //   },
+    //   (error: any) => {
+    //     console.error('API error:', error);
+    //   }
+    // );
   }
 
 }

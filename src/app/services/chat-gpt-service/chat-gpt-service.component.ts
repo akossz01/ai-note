@@ -28,9 +28,7 @@ export class ChatGptServiceComponent {
   completePrompt(prompt: string): Observable<any> {
     const headers = {
       'Content-Type': 'application/json',
-      /*'Authorization':'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' // Înlocuiește API_KEY cu cheia ta de API de la OpenAI*/
-      'Authorization': 'Bearer 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' // Înlocuiește API_KEY cu cheia ta de API de la OpenAI
-
+      /*'Authorization':'key' // Înlocuiește API_KEY cu cheia ta de API de la OpenAI*/
     };
 
     const data = {

@@ -20,27 +20,20 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { SpeechToTextComponent } from './speech-to-text/speech-to-text.component';
 import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
-
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // for [(ngModel)]
-
-
-
-
-
-import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-service.component';
-
+import { ChatInputComponent } from './create-page/chat-input/chat-input.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChatLogComponent } from './chat-log/chat-log.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent,
-    SpeechToTextComponent,
     SpeechDemoComponent,
-    ChatGptServiceComponent,
+    ChatInputComponent,
+    ChatLogComponent,
+    LoginComponent,
+    SpeechDemoComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,18 +45,11 @@ import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-se
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    ReactiveFormsModule
     MatSnackBarModule,
     MatCheckboxModule,
     MatBottomSheetModule,
-    FormsModule,
-
-    
-   
-
-    
     HttpClientModule,
-    ReactiveFormsModule,
-
   ],
 
   providers: [],

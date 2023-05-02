@@ -1,0 +1,28 @@
+.inputContainer {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: auto;
+    width: fit-content;
+}
+
+.formRow1, .formRow2, .formRow3{
+    display: flex;
+}
+
+.formRow1 {
+    justify-content: space-between;
+}
+
+.formRow2 input{
+    width: 30vw;
+}
+
+.formRow3{
+    display: flex;
+    justify-content: center;
+}
+
+
+.getImage{
+    margin-left: auto;
+}

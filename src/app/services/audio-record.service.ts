@@ -57,6 +57,7 @@ export class AudioRecordService {
     if (this.recordingStarted && !this.recordingStopped) {
       this.mediaRecorder.stop();
     }
+    this.recordingStopped = !this.recordingStopped;
   }
 
   getRecordedBlob(): Observable<RecordedAudioOutput> {

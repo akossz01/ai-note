@@ -1,9 +1,107 @@
-.recStyle button{
+div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+    padding: 10px 0 0 0;
 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    flex-wrap: wrap;
+
+    /* background-color: var(--blue); */
+    background-image: linear-gradient(to top, rgba(35, 57, 93, 1), rgba(255,255,255,0) 90%);
+    background-repeat: no-repeat;
+    
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
     position: relative;
-    left: 525px;
-    top: 487px;
+    margin-bottom: 10px;
+}
 
-    
-    
+h1, p{
+    color: white;
+}
+
+input{
+    width: 300px;
+    height: 30px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.fa-paper-plane{
+    color: var(--dark-blue);
+    font-size: 20px;
+    margin-left: -40px;
+    cursor: pointer;
+    margin-top: -10px;
+}
+
+.fa-paper-plane:hover{
+    transform: translateY(-3px) translateX(3px);
+    transition: all 0.3s ease-in-out;
+}
+
+.speech{
+    color: white;
+    font-size: 20px;
+    /* background: var(--dark-blue); */
+    background: #f78a31;
+    padding: 15px;
+    border-radius: 50%;
+    width: 1em;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.fa-message, .fa-image{
+    color: white;
+    background: #f78a31;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 50%;
+    width: 1em;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+@keyframes pulse{
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
+.pulse-animation{
+    animation-name: pulse;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@media screen and (min-width: 600px) {
+    .break{
+        display: none;
+    }
+
+    input{
+        width: 500px;
+    }
 }
