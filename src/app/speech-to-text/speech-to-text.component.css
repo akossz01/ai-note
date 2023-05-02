@@ -14,7 +14,8 @@
 .textBoxResponse{
     position: fixed;
     top: -350px;
-    right: 60px;    
+    right: 60px;
+    z-index: 1;    
 }
 
 
@@ -28,6 +29,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 130px;
+    z-index: 2;
 }
 
 
