@@ -1,11 +1,22 @@
 <!-- <div class="chat-log">
-    <p class="input-msg">Hi. My name is Akos</p>
-    <p class="output-msg">Hello. How can I help you?</p>
-    <p class="input-msg">Can you tell me what is the weather like?</p>
-    <p class="output-msg">Unfortunately, no...</p>
+    <p class="input-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, quia?</p>
+    <p class="output-msg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti vero illo saepe libero? Totam sit veritatis ipsam omnis illo quasi asperiores nostrum, dolore alias! In molestias voluptates perspiciatis incidunt debitis reiciendis assumenda aut impedit, iste quae, fugiat eos ex! Qui, porro eligendi nobis iure ullam vero nam tenetur atque quibusdam?</p>
+    <p class="input-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, nihil.</p>
+    <p class="output-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ipsa, molestiae voluptatum repellendus est adipisci tempore voluptate qui sit, quidem inventore odio perferendis enim hic.</p>
+    <p class="input-msg">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+    <p class="output-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, debitis quibusdam, dolore rem iste beatae incidunt totam voluptatem ut hic temporibus recusandae minima iure ad? Qui, incidunt?</p>
+    <p class="input-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure.</p>
+    <p class="output-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quos aut.</p>
 </div> -->
 
-<div *ngFor="let chat of chats" class="chat-log">
-    <p class="input-msg">{{ chat.input }}</p>
-    <p class="output-msg">{{ chat.output }}</p>
+<div class="chat-container">
+    <div *ngFor="let chat of chats" class="chat-log">
+        <p class="input-msg">{{ chat.input }}</p>
+        <ng-container *ngIf="chat.isImage; else textOutput">
+        <img class="output-msg" [src]="chat.output" alt="image response">
+        </ng-container>
+        <ng-template #textOutput>
+            <p class="output-msg">{{ chat.output }}</p>
+        </ng-template>
+    </div>
 </div>

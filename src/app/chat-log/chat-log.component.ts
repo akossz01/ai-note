@@ -7,7 +7,7 @@ import { ChatLogService } from '../services/chat-log.service';
   styleUrls: ['./chat-log.component.css']
 })
 export class ChatLogComponent {
-  public chats: { input: string; output: string; }[] = [];
+  public chats: { input: string; output: string; isImage: boolean;}[] = [];
 
   constructor(private chatService: ChatLogService) { }
 

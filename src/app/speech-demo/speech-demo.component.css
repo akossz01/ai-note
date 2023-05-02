@@ -4,13 +4,17 @@ div{
     align-items: center;
     flex-direction: row;
     margin: 0;
-    padding: 0;
+    padding: 10px 0 0 0;
 
     position: fixed;
     bottom: 0;
     width: 100%;
-
     flex-wrap: wrap;
+
+    /* background-color: var(--blue); */
+    background-image: linear-gradient(to top, rgba(35, 57, 93, 1), rgba(255,255,255,0) 90%);
+    background-repeat: no-repeat;
+    
 }
 
 .buttons{

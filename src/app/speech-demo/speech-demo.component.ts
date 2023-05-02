@@ -70,23 +70,15 @@ export class SpeechDemoComponent {
     });
   }
 
-  /* getResponse(): void {
-    if (this.getResponsePressed){
-      console.log("Generating reply...")
-      this.inputService.getTextResponse(this.inputValue).subscribe(response => {
-        console.log(response.choices[0].message.content);
-      });
-    }
-    else{
-      console.log("Generating image...")
-      this.inputService.getImageResponse(this.inputValue).subscribe(response => {
-        console.log(response.data[0].url);
-      });
-    }
-  } */
 
   getResponse(): void {
-    if (this.getResponsePressed){
+    if (this.inputValue === '/clear') {
+      this.chatService.clearChats();
+      /* this.chats = []; */
+      this.inputValue = '';
+      window.location.reload();
+      return;
+    } else if (this.getResponsePressed){
       console.log("Generating reply...")
       this.inputService.getTextResponse(this.inputValue).subscribe(response => {
         const output = response.choices[0].message.content;
@@ -100,7 +92,8 @@ export class SpeechDemoComponent {
       this.inputService.getImageResponse(this.inputValue).subscribe(response => {
         const output = response.data[0].url;
         console.log(output);
-        this.chatService.addChat(this.inputValue, output);
+        this.chatService.addImg(this.inputValue, output);
+
         this.inputValue = '';
       });
     }
@@ -119,7 +112,7 @@ export class SpeechDemoComponent {
   getChats(): void {
     this.chatService.getChats().subscribe(chats => {
       console.log(chats);
-      // Here you can assign the chats to a variable in your component to display them in your template
+      // ...
     });
   }
 }

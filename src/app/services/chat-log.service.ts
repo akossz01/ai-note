@@ -7,25 +7,45 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class ChatLogService {
+  private readonly CHATS_KEY = 'chats';
 
-  private chats: { input: string, output: string }[] = [];
+  private chats: { input: string, output: string, isImage: boolean }[] = [];
 
-  constructor() { }
+  constructor() {
+    // Load chats and images from local storage on initialization
+    const storedChats = localStorage.getItem(this.CHATS_KEY);
+    if (storedChats) {
+      this.chats = JSON.parse(storedChats);
+    }
+  }
 
-  public addChat(input: string, output: string): void {
-    this.chats.push({ input, output });
+  public addChat(input: string, output: string, isImage: boolean = false): void {
+    this.chats.push({ input, output, isImage});
+
+    localStorage.setItem(this.CHATS_KEY, JSON.stringify(this.chats));
+  }
+
+  /* public addImg(imgLink: string): void {
+    this.images.push({imgLink});
+  } */
+
+  public addImg(input: string, output: string, isImage: boolean = true): void {
+    this.chats.push({ input, output, isImage});
+
+    localStorage.setItem(this.CHATS_KEY, JSON.stringify(this.chats));
   }
 
   public clearChats(): void {
     this.chats = [];
+
+    localStorage.removeItem(this.CHATS_KEY);
   }
 
   /* getChats(): { input: string, output: string }[] {
     return this.chats;
   } */
   
-  public getChats(): Observable<{ input: string, output: string }[]> {
+  public getChats(): Observable<{ input: string, output: string, isImage: boolean }[]> {
     return of(this.chats);
   }
-
 }
