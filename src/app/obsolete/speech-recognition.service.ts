@@ -7,12 +7,10 @@ declare var SpeechRecognition: any;
   providedIn: 'root'
 })
 export class SpeechRecognitionService {
-
-  /* recognition =  new webkitSpeechRecognition(); */
   recognition: any;
   isStoppedSpeechRecog = false;
   public text = '';
-  tempWords: string | undefined;
+  tempWords: string = '';
 
   constructor() { 
     this.recognition = new (webkitSpeechRecognition || SpeechRecognition)();
@@ -21,6 +19,7 @@ export class SpeechRecognitionService {
 
   init() {
     this.recognition.interimResults = true;
+    // Set this to hu or ro for some more smecherie
     this.recognition.lang = 'en-US';
 
     this.recognition.addEventListener('result', (e: any) => {
@@ -34,6 +33,8 @@ export class SpeechRecognitionService {
   }
 
   start() {
+    // Clears the input if you restart the recording
+    // Delete this line if you want to keep adding prompts
     this.text = '';
 
     this.isStoppedSpeechRecog = false;
@@ -44,7 +45,7 @@ export class SpeechRecognitionService {
         this.recognition.stop();
         console.log("End speech recognition")
       } else {
-        this.wordConcat()
+        this.wordConcat();
         this.recognition.start();
       }
     });
@@ -61,3 +62,6 @@ export class SpeechRecognitionService {
     this.tempWords = '';
   }
 }
+
+// All recognized words first go in the 'tempWords' variable
+// they only get added to the main text after

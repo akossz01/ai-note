@@ -40,7 +40,7 @@ export class InputServiceService {
     const data = {
       "prompt": input,
       "n": 1,
-      "size": "1024x1024"
+      "size": "256x256"
     };
 
     return this.http.post(this.apiImageURL, data, {headers});

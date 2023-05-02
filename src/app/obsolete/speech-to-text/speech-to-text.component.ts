@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
-import { SpeechRecognitionService } from '../services/speech-recognition.service'
+import { SpeechRecognitionService } from '../speech-recognition.service';
 
 @Component({
   selector: 'app-speech-to-text',
@@ -30,11 +30,19 @@ export class SpeechToTextComponent{
 
     if (!this.rec) {
       this.startService();
-      /* document.getElementById('myButton').classList.add('pulse-animation'); */
+      
+      // Adds rec animation
       this.renderer.addClass(micBtn, 'pulse-animation');
+
+      // Stop the service after 5 seconds\
+      setTimeout(() => {
+        this.stopService();
+        this.renderer.removeClass(micBtn, 'pulse-animation');
+      }, 5000);
     } else {
       this.stopService();
-      /* document.getElementById('myButton').classList.remove('pulse-animation'); */
+      
+      // Removes rec animation
       this.renderer.removeClass(micBtn, 'pulse-animation');
     }
 

@@ -15,12 +15,13 @@ export class ChatInputComponent {
 
   getResponse(): void {
     if (this.getResponsePressed){
+      console.log("Generating reply...")
       this.inputService.getTextResponse(this.inputValue).subscribe(response => {
         console.log(response.choices[0].message.content);
       });
     }
     else{
-      console.log("Getting response")
+      console.log("Generating image...")
       this.inputService.getImageResponse(this.inputValue).subscribe(response => {
         console.log(response.data[0].url);
       });
