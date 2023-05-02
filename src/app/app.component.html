@@ -1,4 +1,14 @@
+
 <app-header></app-header>
 <app-chat-log></app-chat-log>
 <app-speech-demo></app-speech-demo>
 <router-outlet></router-outlet>
+
+<!-- <app-header></app-header>
+<ng-container *ngIf="isLoggedIn">
+    <app-speech-demo></app-speech-demo>
+    <app-speech-to-text></app-speech-to-text>
+</ng-container>
+  
+<app-login *ngIf="!isLoggedIn" (onLogin)="login()"></app-login> -->
+  

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -7,5 +11,12 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ai-note';
+
+  isLoggedIn = false;
+
+  
+  login() {
+    this.isLoggedIn = true;
+  }
+  
 }
