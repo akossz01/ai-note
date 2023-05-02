@@ -31,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // for [(ngMo
 
 
 import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-service.component';
+import { UserdocsComponent } from './contentPage/userdocs/userdocs.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-se
     SpeechToTextComponent,
     SpeechDemoComponent,
     ChatGptServiceComponent,
+    UserdocsComponent,
   ],
   imports: [
     BrowserModule,
