@@ -1,0 +1,35 @@
+.sidebar {
+    position: fixed;
+    top: 12.5%;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+}
+  
+.sidebar {
+    background-color: #152238;
+    border-right: 1px solid white;
+}
+  
+mat-card{
+    color: white;
+    background-color: #23395d;
+    border-right: 2px solid white;
+    margin-bottom: 10px;
+    left: 3%;
+    right: 2%;
+}
+
+.content{
+    padding: 10px;
+}
+
+.edit{
+    position:fixed;
+    left:180px;
+}
+
+.delete{
+    position:fixed;
+    left:200px;
+}

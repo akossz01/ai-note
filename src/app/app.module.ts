@@ -27,11 +27,9 @@ import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // for [(ngModel)]
 
 
-
-
-
 import { ChatGptServiceComponent } from './services/chat-gpt-service/chat-gpt-service.component';
 import { UserdocsComponent } from './contentPage/userdocs/userdocs.component';
+
 
 
 @NgModule({
@@ -58,11 +56,6 @@ import { UserdocsComponent } from './contentPage/userdocs/userdocs.component';
     MatCheckboxModule,
     MatBottomSheetModule,
     FormsModule,
-
-    
-   
-
-    
     HttpClientModule,
     ReactiveFormsModule,
 

@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { RouterModule } from '@angular/router';
 
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -12,8 +14,9 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
 
-  isLoggedIn = false;
+  constructor(private activatedRoute: ActivatedRoute) { }
 
+  isLoggedIn = false;
   
   login() {
     this.isLoggedIn = true;

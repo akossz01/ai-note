@@ -5,5 +5,13 @@
   
   <app-header></app-header>
   
-  <app-login *ngIf="!isLoggedIn" (onLogin)="login()"></app-login>
+  <!-- 
+    <app-login *ngIf="!isLoggedIn" (onLogin)="login()"></app-login>
+    
+    <div *ngIf="!activatedRoute.snapshot.url.some(urlSegment => urlSegment.path === 'content')">
+      <app-userdocs> </app-userdocs>
+    </div>
+  -->
+
+  <app-userdocs></app-userdocs>
   
