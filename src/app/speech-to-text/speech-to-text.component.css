@@ -12,18 +12,23 @@
   
 
 .textBoxResponse{
-    position: relative;
-    left: -425px;
-    top: -480px;
-
+    position: fixed;
+    top: -350px;
+    right: 60px;    
 }
+
 
 .imageDim {
     width: 300px; 
     height: 200px; 
     object-fit: cover; 
   }
-  
+
+.placement{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 130px;
+}
 
 
 
@@ -34,11 +39,9 @@ div{
     flex-direction: row;
     margin: 0;
     padding: 0;
-
     position: fixed;
     bottom: 0;
     width: 100%;
-
     flex-wrap: wrap;
 }
 
@@ -85,7 +88,6 @@ input{
 .speech{
     color: white;
     font-size: 20px;
-    /* background: var(--dark-blue); */
     background: #f78a31;
     padding: 15px;
     border-radius: 50%;

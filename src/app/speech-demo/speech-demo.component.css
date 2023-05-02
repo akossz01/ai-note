@@ -1,0 +1,18 @@
+.placement{
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    padding-top: 550px;
+    padding-right: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button{
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
