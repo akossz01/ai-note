@@ -1,23 +1,15 @@
-<p style="color:white">userdocs works!</p>
 <form class="sidebar">
-    <mat-card *ngFor="let card of cards" fxLayout="row" fxLayoutAlign="end center">
-        <mat-card-title class="content">{{ card.title }}
-            <mat-icon class="edit"  (click)="editTitle(card)"> edit </mat-icon>
+ 
+    <mat-card *ngFor="let card of cards; let i = index" fxLayout="row" fxLayoutAlign="end center">
+
+        <mat-card-title *ngIf="!isEditing[i]" class="content" >{{ card.title }}
+            <mat-icon class="edit"  (click)="editContent(i)" *ngIf="!isEditing[i]; else editField"> edit </mat-icon>
+            <ng-template #editField>
+                <input [(ngModel)]="cards[i].title" (keyup.enter)="finalizeRename(i)" (blur)="finalizeRename(i)" />
+            </ng-template>
             <mat-icon class="delete" (click)="deleteCard(card)">delete_outline</mat-icon>
         </mat-card-title>
+
     </mat-card>
-<!-- 
-    <mat-card *ngFor="let card of cards" fxLayout="row" fxLayoutAlign="end center">
-        <mat-card-title class="content">
-            <div *ngIf="!editing" (click)="startEditing(card)">{{ card.title }}</div>
-            <div *ngIf="editing">
-              <mat-form-field>
-                <input matInput type="text" [(ngModel)]="newTitle" (keydown.enter)="endEditing(card)" (blur)="endEditing(card)" autocomplete="off">
-              </mat-form-field>
-            </div>
-            <mat-icon class="edit"  (click)="editTitle(card)"> edit </mat-icon>
-            <mat-icon class="delete" (click)="deleteCard(card)">delete_outline</mat-icon>
-        </mat-card-title>
-    </mat-card>
--->
+
 </form>

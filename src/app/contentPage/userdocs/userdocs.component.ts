@@ -21,8 +21,7 @@ export class UserdocsComponent {
     {title: 'content5', description: 'fifth saved content'}
   ];
   
-  editing = false;
-  newTitle = '';
+  isEditing = [false, false, false, false, false];
 
   deleteCard(card: CardObject) {
     const index = this.cards.indexOf(card);
@@ -31,22 +30,19 @@ export class UserdocsComponent {
     }
   }
 
-  editTitle(card: CardObject) {
-    const newTitle = prompt('Enter a new title', card.title);
-    if (newTitle && newTitle.trim() !== '') {
-      card.title = newTitle.trim();
-    }
+  editContent(index: number) {
+    console.log("bejott ide");
+    this.isEditing[index] = true;
+    console.log(this.isEditing[index], index);
   }
 
-  startEditing(card: CardObject) {
-    this.newTitle = card.title;
-    this.editing = true;
+  finalizeRename(index: number) {
+    console.log('Content saved:', this.cards[index].title);
+    this.isEditing[index] = false;
   }
 
-  endEditing(card: CardObject) {
-    if (this.newTitle.trim() !== '') {
-      card.title = this.newTitle.trim();
-    }
-    this.editing = false;
+  cancel(index: number){
+    this.isEditing[index] = false;
   }
+
 }
