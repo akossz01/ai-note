@@ -1,7 +1,8 @@
-import { Component, OnInit, Renderer2, ElementRef, Output } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, Output, ViewChild } from '@angular/core';
 import { SpeechRecognitionService } from '../services/speech-recognition.service'
 import { ChatGptServiceComponent } from '../services/chat-gpt-service/chat-gpt-service.component';
 import { HttpClient } from '@angular/common/http';
+import { PdfService } from '../services/pdf-service/pdf-service.service';
 
 /*
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,8 +31,12 @@ export class SpeechToTextComponent implements OnInit{
   showImage: boolean = false;
   imageCropper: any;
 
+  @ViewChild('content') content!: ElementRef;
   
- 
+  async savePDF() {
+    this.pdfService.generatePdf(this.content);
+  }
+  
 
   onSubmit(){
     this.chatGptService.completePrompt(this.response).subscribe(
@@ -120,7 +125,7 @@ export class SpeechToTextComponent implements OnInit{
   //---------Output
 
   constructor(public service : SpeechRecognitionService, private renderer: Renderer2, private el: ElementRef,  private chatGptService: ChatGptServiceComponent,
-    private http: HttpClient) { 
+    private http: HttpClient, private pdfService: PdfService) { 
     this.service.init()
   }
   
