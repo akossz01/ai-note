@@ -9,7 +9,8 @@ import { Observable, of } from 'rxjs';
 export class ChatLogService {
   private readonly CHATS_KEY = 'chats';
 
-  private chats: { input: string, output: string, isImage: boolean }[] = [];
+  public chats: { input: string, output: string, isImage: boolean }[] = [];
+  showChats: boolean = false;
 
   constructor() {
     // Load chats and images from local storage on initialization
@@ -35,11 +36,18 @@ export class ChatLogService {
     localStorage.setItem(this.CHATS_KEY, JSON.stringify(this.chats));
   }
 
+  
   public clearChats(): void {
     this.chats = [];
 
     localStorage.removeItem(this.CHATS_KEY);
+    
   }
+
+
+
+
+
 
   /* getChats(): { input: string, output: string }[] {
     return this.chats;
@@ -48,4 +56,35 @@ export class ChatLogService {
   public getChats(): Observable<{ input: string, output: string, isImage: boolean }[]> {
     return of(this.chats);
   }
+
+
+  private savedChats: { input: string, output: string, isImage: boolean }[] = [];
+
+
+  public saveChats(): void {
+    const storedChats = localStorage.getItem(this.CHATS_KEY);
+    if (storedChats) {
+      this.savedChats = JSON.parse(storedChats);
+
+      console.log('Saved chats:', this.chats);
+      this.showChats = true;
+    }
+  }
+
+  /*
+  public saveChats(): void {
+    const storedChats = localStorage.getItem(this.CHATS_KEY);
+    if (storedChats) {
+      // convertim istoricul chat-ului în format JSON și îl descărcăm ca fișier text
+      const chatBlob = new Blob([storedChats], { type: 'text/plain;charset=utf-8' });
+      FileSaver.saveAs(chatBlob, 'chatlog.json');
+
+      // afișăm istoricul chat-ului dacă showCollection este setat la true
+      if (this.showCollection) {
+        this.showChats = true;
+      }
+    }
+  }
+  */
+  
 }

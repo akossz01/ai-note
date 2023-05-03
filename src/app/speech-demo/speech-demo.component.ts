@@ -7,6 +7,9 @@ import { InputServiceService } from '../services/input-service.service';
 import { ChatLogComponent } from '../chat-log/chat-log.component';
 import { ChatLogService } from '../services/chat-log.service';
 
+
+
+
 // Bugs to fix:
 // Saved wav file has no length - WhisperAPI works nonetheless
 // After every reply (Excluding the first), you get more replis (n+2)??
@@ -22,10 +25,54 @@ export class SpeechDemoComponent {
   getResponsePressed: boolean = true;
   getImagePressed: boolean = false;
   
+  showChats: boolean = false;
+  showCollection: boolean = false;
 
-  constructor(private inputService: InputServiceService, private chatService: ChatLogService,private whisper: WhisperapiService, private audioRecordService: AudioRecordService, private fileSaverService: FileSaverService, private renderer: Renderer2) { }
+  constructor(public chatLogService: ChatLogService, 
+    private inputService: InputServiceService,
+    private chatService: ChatLogService,private whisper: WhisperapiService,
+    private audioRecordService: AudioRecordService,
+    private fileSaverService: FileSaverService,
+    private renderer: Renderer2,
+  
+    ) { 
+      this.showChats = false;
+      this.showCollection = false;
+    }
+  public savedChats: { input: string, output: string, isImage: boolean }[] = [];
+  
+  public chats: { input: string, output: string, isImage: boolean }[] = [];
 
+  
+  verCollection(): void{
+    localStorage.getItem('chats');
+
+    this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
+    this.showCollection = true;
+
+    this.chatLogService.getChats().subscribe(chats => {
+    this.chats = chats;
+    });
+
+    console.log(localStorage.getItem('chats'));
+  }
+
+  
+  saveChats(): void {
+    this.chatLogService.saveChats();
+  }
+
+/*
+saveChats(): void {
+  this.chatLogService.addChat(this.inputValue, 'response', false);
+  this.chatLogService.getChats().subscribe(chats => {
+    this.chats = chats;
+  });
+  
+}
+*/
   ngOnInit(): void {
+    
   }
 
   private rec: boolean = false;
@@ -115,4 +162,10 @@ export class SpeechDemoComponent {
       // ...
     });
   }
+
+
+  
+  
+
+  
 }
