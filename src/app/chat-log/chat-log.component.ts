@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ChatLogService } from '../services/chat-log.service';
+import { PdfService } from '../services/pdf-service.service';
 
 @Component({
   selector: 'app-chat-log',
@@ -9,7 +10,13 @@ import { ChatLogService } from '../services/chat-log.service';
 export class ChatLogComponent {
   public chats: { input: string; output: string; isImage: boolean;}[] = [];
 
-  constructor(private chatService: ChatLogService) { }
+  constructor(private chatService: ChatLogService, private pdfService: PdfService) { }
+
+  @ViewChild('content') content!: ElementRef;
+  
+  async savePDF() {
+    this.pdfService.generatePdf(this.content);
+  }
 
   ngOnInit(): void {
     this.chatService.getChats().subscribe(chats => {

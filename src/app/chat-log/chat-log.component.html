@@ -8,7 +8,8 @@
     <p class="input-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure.</p>
     <p class="output-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quos aut.</p>
 </div> -->
-
+<input type="button" value="Download PDF" class="btn btn-success" (click)="savePDF()">
+<div class="container" id="content" #content>  
 <div class="chat-container">
     <div *ngFor="let chat of chats" class="chat-log">
         <p class="input-msg">{{ chat.input }}</p>
@@ -19,4 +20,5 @@
             <p class="output-msg">{{ chat.output }}</p>
         </ng-template>
     </div>
+</div>
 </div>

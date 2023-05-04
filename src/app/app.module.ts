@@ -45,7 +45,7 @@ import { ChatLogComponent } from './chat-log/chat-log.component';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     MatSnackBarModule,
     MatCheckboxModule,
     MatBottomSheetModule,
