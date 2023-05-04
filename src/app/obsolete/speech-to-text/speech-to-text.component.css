@@ -1,28 +1,31 @@
-.chat-container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 20px;
-    height: 200px;
-    overflow-y: scroll;
-    
-    position: relative;
+.image-wrapper {
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
   }
   
-  .question {
-    font-weight: bold;
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
-  .answer {
-    margin-left: 20px;
-  }
 
-
-
-#posButt{
+.textBoxResponse{
     position: relative;
-    right:-55px;
+    left: -425px;
+    top: -480px;
+
 }
+
+.imageDim {
+    width: 300px; 
+    height: 200px; 
+    object-fit: cover; 
+  }
+  
+
+
 
 div{
     display: flex;
@@ -30,17 +33,13 @@ div{
     align-items: center;
     flex-direction: row;
     margin: 0;
-    padding: 10px 0 0 0;
+    padding: 0;
 
-    position: relative;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    flex-wrap: wrap;
 
-    /* background-color: var(--blue); */
-    background-image: linear-gradient(to top, rgba(35, 57, 93, 1), rgba(255,255,255,0) 90%);
-    background-repeat: no-repeat;
-    
+    flex-wrap: wrap;
 }
 
 .buttons{
@@ -50,6 +49,11 @@ div{
     flex-direction: row;
     position: relative;
     margin-bottom: 10px;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
 }
 
 h1, p{
@@ -131,3 +135,5 @@ input{
         width: 500px;
     }
 }
+
+

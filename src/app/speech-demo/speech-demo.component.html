@@ -1,5 +1,32 @@
+<div class="main-container">
+    <div class="buttons">
+        <i id="mic-btn" class="fa-solid fa-microphone speech" (click)="onMicClick()"></i>
+        <i class="fa-solid fa-message" (click)="getText()"></i>
+        <i class="fa-solid fa-image" (click)="getImage()"></i>
+    </div>
+    <input type="text" [(ngModel)]="inputValue" placeholder="Type or record your prompt...">
+    <i class="fa-solid fa-paper-plane" (click)="getResponse()"></i>
 
-<div class="placement">
-<button (click)="onStartRecording()">Start Recording w/ Whisper API</button>
-<button (click)="onStopRecording()">Stop Recording</button>
+    <button id="posButt" (click)="verCollection()">Check Collection</button>
+    
 </div>
+<!-- *ngIf="showChats || showCollection" -->
+<div class="chat-container" >
+  <div *ngFor="let chat of chatLogService.chats">
+    <div *ngIf="!chat.isImage">
+      <div class="question">{{ chat.input }}</div>
+      <div class="answer">{{ chat.output }}</div>
+    </div>
+    <div *ngIf="chat.isImage">
+      <img [src]="chat.output" alt="Image">
+    </div>
+  </div>
+</div>
+
+  
+  
+<!-- <button (click)="getChats()">Get Chats</button> -->
+
+<!-- <button (click)="onStartRecording()">Start Recording w/ Whisper API</button>
+<button (click)="onStopRecording()">Stop Recording</button> -->
+
