@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs';
 
-import { environment } from './api_key';
+import { environment } from '../api_key';
 
 @Injectable({
   providedIn: 'root'
