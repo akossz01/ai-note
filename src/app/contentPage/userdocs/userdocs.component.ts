@@ -28,6 +28,7 @@ export class UserdocsComponent {
     if (index >= 0) {
       this.cards.splice(index, 1);
     }
+    console.log("torol", index);
   }
 
   editContent(index: number) {
@@ -43,6 +44,10 @@ export class UserdocsComponent {
 
   cancel(index: number){
     this.isEditing[index] = false;
+  }
+
+  updateTitle(index: number, newTitle: string) {
+    this.cards[index].title = newTitle;
   }
 
 }

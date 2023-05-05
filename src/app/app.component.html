@@ -1,17 +1,1 @@
-<ng-container *ngIf="isLoggedIn">
-    <app-speech-demo></app-speech-demo>
-    <app-speech-to-text></app-speech-to-text>
-</ng-container>
-  
-  <app-header></app-header>
-  
-  <!-- 
-    <app-login *ngIf="!isLoggedIn" (onLogin)="login()"></app-login>
-    
-    <div *ngIf="!activatedRoute.snapshot.url.some(urlSegment => urlSegment.path === 'content')">
-      <app-userdocs> </app-userdocs>
-    </div>
-  -->
-
-  <app-userdocs></app-userdocs>
-  
+<router-outlet></router-outlet>

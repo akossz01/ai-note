@@ -1,15 +1,42 @@
-<form class="sidebar">
+<div class="sidebar">
  
     <mat-card *ngFor="let card of cards; let i = index" fxLayout="row" fxLayoutAlign="end center">
 
-        <mat-card-title *ngIf="!isEditing[i]" class="content" >{{ card.title }}
+        <mat-card-title class="content">
+            <span *ngIf="!isEditing[i]">
+
+                {{ card.title }}
+            </span>
             <mat-icon class="edit"  (click)="editContent(i)" *ngIf="!isEditing[i]; else editField"> edit </mat-icon>
             <ng-template #editField>
-                <input [(ngModel)]="cards[i].title" (keyup.enter)="finalizeRename(i)" (blur)="finalizeRename(i)" />
+                <input [(ngModel)]="card.title" (keyup.enter)="finalizeRename(i)" (blur)="finalizeRename(i)" />
             </ng-template>
             <mat-icon class="delete" (click)="deleteCard(card)">delete_outline</mat-icon>
+        
         </mat-card-title>
 
     </mat-card>
 
+</div>
+
+<!--
+    <form class="sidebar">
+ 
+    <mat-card *ngFor="let card of cards; let i = index" fxLayout="row" fxLayoutAlign="end center">
+
+        <div *ngIf="!isEditing[i]" class="content" >{{ card.title }}
+            <mat-icon class="edit"  (click)="editContent(i)"> edit </mat-icon>
+        </div>
+        <div *ngIf="!isEditing[i]">
+            <mat-form-field>
+                <input [(ngModel)]="cards[i]!.title" (keyup.enter)="console.log(i); isEditing[i]=false" (blur)="isEditing[i] = false" />
+            </mat-form-field>
+        </div>
+            
+            <input matInput [(ngModel)]="cards[i]!.title" (blur)="isEditing[i] = false" (keyup.enter)="updateTitle(i, $event.target.value)">
+            <mat-icon class="delete" (click)="deleteCard(card)">delete_outline</mat-icon>
+        
+    </mat-card>
+
 </form>
+-->
