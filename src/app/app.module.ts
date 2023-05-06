@@ -9,6 +9,7 @@ import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 import { ChatInputComponent } from './create-page/chat-input/chat-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChatLogComponent } from './chat-log/chat-log.component';
+import { UserdocsComponent } from './contentPage/userdocs/userdocs.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ChatLogComponent } from './chat-log/chat-log.component';
     SpeechDemoComponent,
     ChatInputComponent,
     ChatLogComponent,
+    UserdocsComponent,
   ],
   imports: [
     BrowserModule,

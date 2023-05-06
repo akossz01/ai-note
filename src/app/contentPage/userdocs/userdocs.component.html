@@ -1,0 +1,36 @@
+
+
+<div class="sidebar">
+    <div  *ngFor="let card of cards; let i = index" class="card-wrapper">
+      <button id="posButt" (click)="verCollection(currentIndex); currentIndex=currentIndex+1">Check Collection</button>
+      <div class="chat-container" >
+        <div *ngFor="let chat of chatLogService.chats">
+          <div *ngIf="!chat.isImage">
+            <div class="question">{{ chat.input }}</div>
+            <div class="answer">{{ chat.output }}</div>
+          </div>
+          <div *ngIf="chat.isImage">
+            <img [src]="chat.output" alt="Image">
+          </div>
+        </div>
+      </div>
+  
+      
+  
+      <div class="card-title content">
+        <span *ngIf="!isEditing[i]">{{ card.title }}
+        
+        </span>
+        <span (click)="editContent(i)" class="edit">edit</span>
+        <ng-container *ngIf="isEditing[i]">
+          <input [(ngModel)]="card.title" (keyup.enter)="finalizeRename(i)" (blur)="finalizeRename(i)" />
+        </ng-container>
+        <span (click)="deleteCard(card)" class="delete">delete_outline</span>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  
+  
