@@ -11,6 +11,7 @@ export class ChatLogService {
 
   public chats: { input: string, output: string, isImage: boolean }[] = [];
   showChats: boolean = false;
+  chatsS: any;
 
   constructor() {
     // Load chats and images from local storage on initialization
