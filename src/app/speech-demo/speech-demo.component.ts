@@ -44,17 +44,31 @@ export class SpeechDemoComponent {
   public chats: { input: string, output: string, isImage: boolean }[] = [];
 
   
-  verCollection(): void{
-    localStorage.getItem('chats');
+  verCollection(): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
+
+    const storedChats = localStorage.getItem('chatsS');
+    if (storedChats) {
+      this.chats = JSON.parse(storedChats);
+    }
 
     this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
     this.showCollection = true;
 
-    this.chatLogService.getChats().subscribe(chats => {
-    this.chats = chats;
-    });
+    console.log("This is this.chats")
+    console.log(this.chats)
 
-    console.log(localStorage.getItem('chats'));
+    this.chatLogService.chats = this.chats
+    console.log("This is chatLogService")
+    console.log(this.chatLogService.chats)
+
+  
+    console.log("This is localStorage")
+    console.log(localStorage.getItem('chatsS'));
+
+    
+    
+    
+   
   }
 
   
