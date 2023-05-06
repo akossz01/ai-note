@@ -1,0 +1,44 @@
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 16px;
+  }
+  
+  .card-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .card-title .content {
+    flex: 1;
+    padding-right: 16px;
+  }
+  
+  .card-title .edit,
+  .card-title .delete {
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 16px;
+    color: #333;
+  }
+  
+  .card-title .delete:hover {
+    color: red;
+  }
+  
