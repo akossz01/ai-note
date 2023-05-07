@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +26,7 @@ export class LoginComponent {
 
  @Output() onLogin = new EventEmitter();
 
-  constructor(private snackBar:MatSnackBar){
+  constructor(private snackBar:MatSnackBar, private auth: AuthService, private router: Router){
 
   }
   signup() {
@@ -47,11 +50,9 @@ export class LoginComponent {
   }
 
   login() {
-    if(this.email=="admin@yahoo.com" && this.password=="admin"){
-        this.snackBar.open('Login Successful','',{duration:1000})
-        this.onLogin.emit();
-    }else{
-      this.snackBar.open('Login error','',{duration:1000})
-    }
+    this.auth.login(this.email, this.password).subscribe(() => {
+      this.router.navigate(['/new-chat']);
+    });
+    
   }
 }

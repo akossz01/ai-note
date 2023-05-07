@@ -24,6 +24,14 @@ import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 import { ChatInputComponent } from './create-page/chat-input/chat-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChatLogComponent } from './chat-log/chat-log.component';
+import { NewChatComponent } from './new-chat/new-chat.component';
+
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +42,7 @@ import { ChatLogComponent } from './chat-log/chat-log.component';
     ChatLogComponent,
     LoginComponent,
     SpeechDemoComponent,
+    NewChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,11 +54,14 @@ import { ChatLogComponent } from './chat-log/chat-log.component';
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     MatSnackBarModule,
     MatCheckboxModule,
     MatBottomSheetModule,
     HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
   ],
 
   providers: [],
