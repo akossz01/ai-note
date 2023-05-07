@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -24,6 +24,10 @@ export class LoginComponent {
     confirmPassword: new FormControl('', Validators.required)
   }, {validators: passwordsMatchValidator()});
   
+  ngOnInit(): void {
+    
+  }
+
   title = 'aiNotes';
   /* email:string = "";
   password:string = ""; */
@@ -62,6 +66,7 @@ export class LoginComponent {
 
     const { name, email, password } = this.signUpForm.value;
     this.auth.signUp(name!, email!, password!).subscribe(() => {
+      this.snackBar.open('Sign Up Successful','',{duration:1000});
       this.auth.setLoginTrue();
       this.router.navigate(['/new-chat']);
     })
@@ -72,9 +77,22 @@ export class LoginComponent {
     console.log(email + ' ' + password);
     
     this.auth.login(email!, password!).subscribe(() => {
+      this.snackBar.open('Login Successful','',{duration:1000})
       this.router.navigate(['/new-chat']);
     });
     
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  get confirmPassowrd() {
+    return this.signUpForm.get('confirmPassword');
   }
 }
 

@@ -10,12 +10,15 @@
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input type="email" matInput placeholder="Email" value="" formControlName="email">
+              <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+              <mat-error *ngIf="email?.errors?.['email']">Not a valid email address</mat-error>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
   
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
               <input type="password" matInput placeholder="Password" formControlName="password">
+              <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
             <button mat-button color="primary" (click)="login()">Sign In</button>
@@ -25,21 +28,26 @@
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input type="email" matInput placeholder="Email" value="" formControlName="email">
-              <div *ngIf="emailError" class="errorText">Email address is incorrect</div>
+              <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
+              <mat-error *ngIf="email?.errors?.['email']">Not a valid email address</mat-error>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
+
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
               <input type="password" matInput placeholder="Password" formControlName="password">
-              <div *ngIf="lengthError" class="errorText">Please enter a longer password!</div>
+              <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
+
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
               <input type="password" matInput placeholder="Password" formControlName="confirmPassword">
-              <div *ngIf="sameError" class="errorText">This password is not like the previous one!</div>
+              <mat-error *ngIf="password?.errors?.['required']">Confirm password is required</mat-error>
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
+            
+            <mat-error *ngIf="signUpForm.errors?.['passwordsDontMatch']">Passwords should match</mat-error>
             <div mat-dialog-actions align="left"> 
               <mat-checkbox color="primary" [(ngModel)]="checkbox"> </mat-checkbox>
               <button mat-stroked-button color="primary" >Privacy policy</button>
