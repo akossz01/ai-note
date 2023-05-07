@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ChatLogService } from '../services/chat-log.service';
 import { PdfService } from '../services/pdf-service.service';
+import * as Quill from 'quill';
 
 @Component({
   selector: 'app-chat-log',
@@ -8,7 +9,16 @@ import { PdfService } from '../services/pdf-service.service';
   styleUrls: ['./chat-log.component.css']
 })
 export class ChatLogComponent {
+  editing = false;
   public chats: { input: string; output: string; isImage: boolean;}[] = [];
+
+  editChat(chat: any) {
+    this.editing = true;
+}
+
+saveChat(chat: any) {
+  this.editing = false;
+}
 
   constructor(private chatService: ChatLogService, private pdfService: PdfService) { }
 

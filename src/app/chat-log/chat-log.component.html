@@ -9,16 +9,28 @@
     <p class="output-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quos aut.</p>
 </div> -->
 <input type="button" value="Download PDF" class="btn btn-success" (click)="savePDF()">
-<div class="container" id="content" #content>  
-<div class="chat-container">
-    <div *ngFor="let chat of chats" class="chat-log">
-        <p class="input-msg">{{ chat.input }}</p>
-        <ng-container *ngIf="chat.isImage; else textOutput">
-        <img class="output-msg" [src]="chat.output" alt="image response">
-        </ng-container>
-        <ng-template #textOutput>
-            <p class="output-msg">{{ chat.output }}</p>
-        </ng-template>
+<div class="container" id="content" #content>
+    <div class="chat-container">
+        <div *ngFor="let chat of chats" class="chat-log" [class.editing]="this.editing" (dblclick)="editChat(chat)">
+            <ng-container *ngIf="!this.editing; else quillEditor">
+              <ng-container *ngIf="chat.isImage || chat.output.includes('<')">
+                <ng-container *ngIf="chat.isImage">
+                  <img class="output-msg" [src]="chat.output" alt="image response">
+                </ng-container>
+                <ng-container *ngIf="!chat.isImage">
+                  <div class="input-msg" [innerHTML]="chat.input"></div>
+                  <div class="output-msg" [innerHTML]="chat.output"></div>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="!chat.isImage && !chat.output.includes('<')">
+                <p class="input-msg">{{ chat.input }}</p>
+                <p class="output-msg">{{ chat.output }}</p>
+              </ng-container>
+            </ng-container>
+            <ng-template #quillEditor>
+              <quill-editor [(ngModel)]="chat.output"></quill-editor>
+              <button (click)="saveChat(chat)">Save</button>
+            </ng-template>
+          </div>          
     </div>
-</div>
 </div>

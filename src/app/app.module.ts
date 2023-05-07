@@ -16,7 +16,6 @@ import { LoginComponent } from './home/login/login.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
-
 import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +23,7 @@ import { SpeechDemoComponent } from './speech-demo/speech-demo.component';
 import { ChatInputComponent } from './create-page/chat-input/chat-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChatLogComponent } from './chat-log/chat-log.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import { ChatLogComponent } from './chat-log/chat-log.component';
     MatCheckboxModule,
     MatBottomSheetModule,
     HttpClientModule,
+    QuillModule
   ],
 
   providers: [],
