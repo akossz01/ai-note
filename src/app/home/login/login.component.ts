@@ -77,7 +77,8 @@ export class LoginComponent implements OnInit{
     console.log(email + ' ' + password);
     
     this.auth.login(email!, password!).subscribe(() => {
-      this.snackBar.open('Login Successful','',{duration:1000})
+      this.snackBar.open('Login Successful','',{duration:1000});
+      this.auth.setLoginTrue();;
       this.router.navigate(['/new-chat']);
     });
     

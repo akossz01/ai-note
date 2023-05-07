@@ -9,9 +9,9 @@ const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectToHome = () => redirectLoggedInTo(['new-chat']);
 
 const routes: Routes = [
-  {path: 'new-chat', component: NewChatComponent},
-  {path: 'login', component: LoginComponent/* , ...canActivate(redirectToHome) */},
-  {path: '', component: NewChatComponent},
+  {path: 'new-chat', component: NewChatComponent, ...canActivate(redirectToLogin)},
+  {path: 'login', component: LoginComponent, ...canActivate(redirectToHome)},
+  {path: '', component: NewChatComponent, ...canActivate(redirectToLogin)},
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Renderer2, ElementRef } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { Renderer2, ElementRef } from '@angular/core';
 export class HeaderComponent {
   showMenu: boolean = false;
 
-  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef) {
+  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef, private auth: AuthService) {
 
   }
 
@@ -61,5 +62,16 @@ export class HeaderComponent {
       this.renderer.addClass(menuBtn, 'open');
     });
   }
+
+  signout() {
+    window.location.reload();
+    this.auth.logout();
+  }
   
+  logCheck() {
+    if (localStorage.getItem('loggedIn')) {
+      return true;
+    }
+    return false;
+  }
 }
