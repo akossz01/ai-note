@@ -10,8 +10,8 @@
     <button id="posButt" (click)="verCollection()">Check Collection</button>
     
 </div>
-<!-- *ngIf="showChats || showCollection" -->
-<div class="chat-container" >
+
+<div class="chat-container" *ngIf="showChats && showCollection">
   <div *ngFor="let chat of chatLogService.chats">
     <div *ngIf="!chat.isImage">
       <div class="question">{{ chat.input }}</div>

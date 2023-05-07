@@ -67,7 +67,6 @@ export class SpeechDemoComponent {
 
   }
 
-  
   saveChats(): void {
     this.chatLogService.saveChats();
   }
