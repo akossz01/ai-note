@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -16,13 +16,20 @@ export class LoginComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+
+  signUpForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.email, Validators.required]),
+    password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required)
+  }, {validators: passwordsMatchValidator()});
   
   title = 'aiNotes';
   /* email:string = "";
   password:string = ""; */
-  remail:string = "";
+  /* remail:string = "";
   rpassword:string = "";
-  rcpassword:string = "";
+  rcpassword:string = ""; */
   checkbox: boolean = false;
   regex: string = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
   emailError: boolean = false;
@@ -36,7 +43,7 @@ export class LoginComponent {
 
   }
   signup() {
-    if(!this.remail.match(this.regex)) this.emailError = true;
+    /* if(!this.remail.match(this.regex)) this.emailError = true;
     if(this.rpassword.length < 5) this.lengthError = true;
     if(this.rcpassword.length < 5) this.lengthError = true;
     if(this.rpassword.length != this.rcpassword.length) this.sameError = true;
@@ -53,6 +60,11 @@ export class LoginComponent {
         this.snackBar.open('SignUp error','',{duration:1000})
       }*/
 
+    const { name, email, password } = this.signUpForm.value;
+    this.auth.signUp(name!, email!, password!).subscribe(() => {
+      this.auth.setLoginTrue();
+      this.router.navigate(['/new-chat']);
+    })
   }
 
   login() {
@@ -64,4 +76,19 @@ export class LoginComponent {
     });
     
   }
+}
+
+export function passwordsMatchValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+
+    if (password && confirmPassword && password !== confirmPassword) {
+      return {
+        passwordsDontMatch: true
+      }
+    }
+
+    return null;
+  };
 }

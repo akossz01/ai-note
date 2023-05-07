@@ -21,22 +21,22 @@
             <button mat-button color="primary" (click)="login()">Sign In</button>
           </mat-tab>
 
-          <mat-tab label="Sign Up">
+          <mat-tab label="Sign Up" [formGroup]="signUpForm">
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
-              <input type="email" matInput placeholder="Email" value="" [(ngModel)]="remail">
+              <input type="email" matInput placeholder="Email" value="" formControlName="email">
               <div *ngIf="emailError" class="errorText">Email address is incorrect</div>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" [(ngModel)]="rpassword">
+              <input type="password" matInput placeholder="Password" formControlName="password">
               <div *ngIf="lengthError" class="errorText">Please enter a longer password!</div>
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" [(ngModel)]="rcpassword">
+              <input type="password" matInput placeholder="Password" formControlName="confirmPassword">
               <div *ngIf="sameError" class="errorText">This password is not like the previous one!</div>
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
