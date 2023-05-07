@@ -3,18 +3,19 @@
       <mat-card-header>
         <mat-card-title>AI Notes</mat-card-title>
       </mat-card-header>
+
       <mat-card-content>
         <mat-tab-group>
-          <mat-tab label="Sign In">
+          <mat-tab label="Sign In" [formGroup]="loginForm">
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
-              <input type="email" matInput placeholder="Email" value="" [(ngModel)]="email">
+              <input type="email" matInput placeholder="Email" value="" formControlName="email">
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
   
             <mat-form-field class="example-full-width">
               <mat-label>Password</mat-label>
-              <input type="password" matInput placeholder="Password" [(ngModel)]="password">
+              <input type="password" matInput placeholder="Password" formControlName="password">
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
             <button mat-button color="primary" (click)="login()">Sign In</button>

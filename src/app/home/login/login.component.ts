@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -11,20 +12,25 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
- title = 'aiNotes';
- email:string = "";
- password:string = "";
- remail:string = "";
- rpassword:string = "";
- rcpassword:string = "";
- checkbox: boolean = false;
- regex: string = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
- emailError: boolean = false;
- sameError: boolean = false;
- lengthError: boolean = false;
- checkError: boolean = false;
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
+  });
+  
+  title = 'aiNotes';
+  /* email:string = "";
+  password:string = ""; */
+  remail:string = "";
+  rpassword:string = "";
+  rcpassword:string = "";
+  checkbox: boolean = false;
+  regex: string = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+  emailError: boolean = false;
+  sameError: boolean = false;
+  lengthError: boolean = false;
+  checkError: boolean = false;
 
- @Output() onLogin = new EventEmitter();
+  @Output() onLogin = new EventEmitter();
 
   constructor(private snackBar:MatSnackBar, private auth: AuthService, private router: Router){
 
@@ -50,7 +56,10 @@ export class LoginComponent {
   }
 
   login() {
-    this.auth.login(this.email, this.password).subscribe(() => {
+    const {email, password} = this.loginForm.value;
+    console.log(email + ' ' + password);
+    
+    this.auth.login(email!, password!).subscribe(() => {
       this.router.navigate(['/new-chat']);
     });
     
