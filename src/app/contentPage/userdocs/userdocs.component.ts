@@ -91,12 +91,18 @@ export class UserdocsComponent {
 
       const storedChats = localStorage.getItem('chatsS');
       
-  
       if (storedChats) {
         this.chats= JSON.parse(storedChats);
-        
+        let chatContent = '';
+        /*this.cards[this.currentIndex].description = this.chats[this.currentIndex].input + ' ' + this.chats[this.currentIndex].output;*/
+        for (let i = 0; i < this.chats.length; i++) {
+          chatContent += '<b>' + this.chats[i].input + '</b>'+ '<br>' + this.chats[i].output + '<br>';
+
+        }
+        this.cards[this.currentIndex].description = chatContent;
       }
-      
+      this.chatLogService.chats = this.chats;
+      currentIndex++;
       /*
       this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
       this.showCollection = true;
@@ -113,6 +119,8 @@ export class UserdocsComponent {
       console.log("This is localStorage")
       console.log(localStorage.getItem('chatsS'));
   
+     
+
       
       
       
