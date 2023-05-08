@@ -6,6 +6,7 @@ import { identity } from 'rxjs';
 export interface CardObject {
   title: string;
   description?: string;
+  chat: ChatLogService;
 }
 
 @Component({
@@ -29,21 +30,15 @@ export class UserdocsComponent {
   countCards(cardIndex : number){
 
   }
-    
-  /*
-  addContent(i: number) {
-    this.cards[i].description = this.chatLogService.chats.map(chat => chat.input + ' ' + chat.output).join(' ');
-     this.currentCardIndex++;
-   }
-  */
+
 
 
   public cards: CardObject[] = [
-    {title: 'content1', description: 'first saved content'},
-    {title: 'content2', description: 'second saved content'},
-    {title: 'content3', description: 'third saved content'},
-    {title: 'content4', description: 'fourth saved content'},
-    {title: 'content5', description: 'fifth saved content'}
+    {title: 'content1', description: 'first saved content', chat: this.chatLogService},
+    {title: 'content2', description: 'second saved content', chat: this.chatLogService},
+    {title: 'content3', description: 'third saved content', chat: this.chatLogService},
+    {title: 'content4', description: 'fourth saved content', chat: this.chatLogService},
+    {title: 'content5', description: 'fifth saved content', chat: this.chatLogService}
   ];
   
   isEditing = [false, false, false, false, false];
@@ -87,46 +82,51 @@ export class UserdocsComponent {
     public currentIndex: number = 0;
     public currentMessageIndex = 0;
 
-  verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
+  // verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
 
-    const storedChats = localStorage.getItem('chatsS');
-    if (storedChats) {
-      this.chats[0] = JSON.parse(storedChats);
-    }
+  //   const storedChats = localStorage.getItem('chatsS');
+  //   if (storedChats) {
+  //     this.chats[0] = JSON.parse(storedChats);
+  //   }
     
-    /*
-    this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
-    this.showCollection = true;
-    */
+  //   /*
+  //   this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
+  //   this.showCollection = true;
+  //   */
 
-    console.log("This is this.chats")
-    console.log(this.chats)
+  //   console.log("This is this.chats")
+  //   console.log(this.chats)
 
-    this.chatLogService.chats = this.chats
-    console.log("This is chatLogService")
-    console.log(this.chatLogService.chats)
+  //   this.chatLogService.chats = this.chats
+  //   console.log("This is chatLogService")
+  //   console.log(this.chatLogService.chats)
 
   
-    console.log("This is localStorage")
-    console.log(localStorage.getItem('chatsS')); 
-  }
+  //   console.log("This is localStorage")
+  //   console.log(localStorage.getItem('chatsS')); 
+  // }
   
   getCurrent() : void {
     console.log('first')
-    console.log(this.currentIndex)
-    console.log(this.chats[this.currentIndex])
+    console.log(this.currentCardIndex)
+    console.log(this.chats[this.currentCardIndex])
+    console.log(this.cards[this.currentCardIndex].chat.chats)
 
     
-    if (!this.chats[this.currentIndex]){
+    if (this.cards[this.currentCardIndex].chat.chats){
       const storedChats = localStorage.getItem('chatsS');
       if(storedChats){
-        this.chats[this.currentIndex] = JSON.parse(storedChats)
-        this.currentIndex += 1
+        this.cards[this.currentCardIndex].chat.chats = JSON.parse(storedChats)
+        this.currentCardIndex += 1
+        console.log('in if')
+        console.log(storedChats)
+        console.log(this.cards[this.currentCardIndex].chat.chats)
       }
     }
 
     console.log('after')
-    console.log(this.currentIndex)
-    console.log(this.chats[this.currentIndex-1])
+    console.log(this.currentCardIndex)
+    console.log(this.cards[this.currentCardIndex-1])
+    
   }
 }
