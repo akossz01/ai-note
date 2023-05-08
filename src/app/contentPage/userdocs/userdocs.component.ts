@@ -87,35 +87,38 @@ export class UserdocsComponent {
     public currentIndex: number = 0;
     public currentMessageIndex = 0;
 
-  verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
+    verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
 
-    const storedChats = localStorage.getItem('chatsS');
-    if (storedChats) {
-      this.chats = JSON.parse(storedChats);
-    
+      const storedChats = localStorage.getItem('chatsS');
       
-    }
-    
-    /*
-    this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
-    this.showCollection = true;
-    */
-
-    console.log("This is this.chats")
-    console.log(this.chats)
-
-    this.chatLogService.chats = this.chats
-    console.log("This is chatLogService")
-    console.log(this.chatLogService.chats)
-
   
-    console.log("This is localStorage")
-    console.log(localStorage.getItem('chatsS'));
+      if (storedChats) {
+        this.chats= JSON.parse(storedChats);
+        
+      }
+      
+      /*
+      this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
+      this.showCollection = true;
+      */
+  
+      console.log("This is this.chats")
+      console.log(this.chats)
+  
+      this.chatLogService.chats = this.chats
+      console.log("This is chatLogService")
+      console.log(this.chatLogService.chats)
+  
+    
+      console.log("This is localStorage")
+      console.log(localStorage.getItem('chatsS'));
+  
+      
+      
+      
+     
+    }
 
-    
-    
-   
-  }
   
   
 
