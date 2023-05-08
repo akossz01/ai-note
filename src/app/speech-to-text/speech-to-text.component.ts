@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 
 import * as sharp from 'sharp'; 
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { SavedChatService } from '../services/saved-chat.service';
 
 
 @Component({
@@ -118,12 +119,21 @@ export class SpeechToTextComponent implements OnInit{
   }
 
   //---------Output
+  chatTitle: string = '';
+
 
   constructor(public service : SpeechRecognitionService, private renderer: Renderer2, private el: ElementRef,  private chatGptService: ChatGptServiceComponent,
-    private http: HttpClient) { 
+    private http: HttpClient, private savedChatService: SavedChatService) { 
     this.service.init()
   }
   
+  saveChat(): void {
+    const cards: CardObject = {
+      id: this.savedChatService.getSavedChats().length + 1,
+      title: this.chatTitle,
+      description: []
+    };
+  }
 
   ngOnInit(): void {
     /*
@@ -164,3 +174,7 @@ export class SpeechToTextComponent implements OnInit{
     this.rec = !this.rec;
   }
 }
+function ngOnInit() {
+  throw new Error('Function not implemented.');
+}
+

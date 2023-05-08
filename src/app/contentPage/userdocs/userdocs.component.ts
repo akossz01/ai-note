@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SavedChatService } from 'src/app/services/saved-chat.service';
 
 interface CardObject {
@@ -12,15 +13,34 @@ interface CardObject {
   styleUrls: ['./userdocs.component.css']
 })
 
-export class UserdocsComponent implements OnInit {
+export class UserdocsComponent implements OnInit, OnDestroy {
 
-  cards: CardObject[];
+  cards: CardObject[] = [];
+  private savedChatSubscription: Subscription;
+
 
   constructor(private savedChatService: SavedChatService ) {}
-
+/*
   ngOnInit(): void {
     this.cards = this.savedChatService.getSavedChats();
+    this.savedChatService.getSavedChatsSubject().subscribe(chats => {
+      this.cards = chats;
+    } )
   }
+*/
+
+ngOnInit(): void {
+  this.savedChatSubscription = this.savedChatService.getSavedChatsSubject().subscribe(
+    (cards: CardObject[]) => {
+      this.cards = cards;
+    }
+  );
+}
+
+ngOnDestroy(): void {
+  this.savedChatSubscription.unsubscribe();
+}
+
 
   isEditing = [false, false, false, false, false];
 
