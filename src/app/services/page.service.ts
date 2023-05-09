@@ -35,11 +35,26 @@ export class PageService {
 
   async createPage() {
     console.log('page created');
-    const logsContainer = document.getElementById('logs-container');
   
     const logs = await this.getLogs();
     console.log(logs);
+
+    const savedPages = JSON.parse(localStorage.getItem('savedPages') || '[]');
+    const newPageId = savedPages.length + 1; // generate a new ID for the new page using a library like uuid
+    savedPages.push({ id: newPageId, logs }); // save the logs under a new page ID
+    console.log(newPageId);
+    
+    localStorage.setItem('savedPages', JSON.stringify(savedPages));
+    console.log(savedPages);
   }
+}
+
+export function uuidv4(): string {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
 }
 
 /* for (const log of logs) {
