@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Renderer2, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent {
   showMenu: boolean = false;
 
-  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef, private auth: AuthService) {
+  constructor(private router: Router, private renderer: Renderer2, private el: ElementRef, private auth: AuthService, private pageService: PageService) {
 
   }
 
@@ -33,7 +34,6 @@ export class HeaderComponent {
 
       // Change Icon To X
       this.renderer.addClass(menuBtn, 'open');
-      console.log('added open');
     } else {
       setTimeout(() => {
         this.renderer.removeClass(mobileMenu, 'fade-in');
@@ -49,7 +49,6 @@ export class HeaderComponent {
       setTimeout(() => {
         this.renderer.removeClass(menuBtn, 'open');
       }, 10);
-      console.log('removed open');
     }
 
     this.showMenu = !this.showMenu;
@@ -73,5 +72,13 @@ export class HeaderComponent {
       return true;
     }
     return false;
+  }
+
+  createPage() {
+    /* this.pageService.createPage(); */
+    this.pageService.createPage();
+  }
+  readLogsFromLocalStorage() {
+    /* this.pageService.readLogsFromLocalStorage(); */
   }
 }
