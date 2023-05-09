@@ -2,13 +2,11 @@
 
 <div class="sidebar">
   <button id="posButt" (click)="getCurrent(currentIndex); currentIndex=currentIndex+1">Check Collection</button>
+  
   <div  *ngFor="let card of cards; let i = index" class="card-wrapper">
           <p class="card-text" [innerHTML]="card.description"></p>
-          <div *ngFor="let chat of chatLogService.chats">
-            
-            <div *ngIf="chat.isImage">
-              <img [src]="chat.output" alt="Image">
-            </div>
+          <div *ngIf="chatLogService.chats[currentIndex]?.isImage">
+            <img [src]="chatLogService.chats[currentIndex].output" alt="Image">
           </div>
     
 

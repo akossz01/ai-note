@@ -25,7 +25,14 @@ export class UserdocsComponent {
   private readonly cardKey= 'cardKey'
 
   constructor( public chatLogService: ChatLogService){
-    localStorage.setItem('cardKey', 'cards')
+    /*localStorage.setItem('cardKey', 'cards')*/
+    const cardsInLocalStorage = localStorage.getItem(this.cardKey);
+    
+    if(cardsInLocalStorage){
+      this.cards = JSON.parse(cardsInLocalStorage);
+    }
+    
+    
   }
   content: string | undefined;
 
@@ -34,8 +41,10 @@ export class UserdocsComponent {
   }
 
 
+  
+
   public cards: CardObject[] = [
-    {title: 'content1', description: 'first saved content', chat: this.chatLogService},
+    {title: 'content1', description: 'first saved content', chat: this.chatLogService,},
     {title: 'content2', description: 'second saved content', chat: this.chatLogService},
     {title: 'content3', description: 'third saved content', chat: this.chatLogService},
     {title: 'content4', description: 'fourth saved content', chat: this.chatLogService},
@@ -84,10 +93,15 @@ export class UserdocsComponent {
     showCollection: boolean = false;
     public currentIndex: number = 0;
     public currentMessageIndex = 0;
+    
 
     getCurrent(currentIndex: number): void{
       const storedChats = localStorage.getItem('chatsS'); //for
       
+     
+      
+
+
       if (storedChats) {
         this.chats= JSON.parse(storedChats);
         let chatContent = '';
@@ -106,40 +120,46 @@ export class UserdocsComponent {
 
     private updateCardStorage(): void{
       localStorage.setItem('cardKey', JSON.stringify(this.cards))
-    }
-    // verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
 
-    //   const storedChats = localStorage.getItem('chatsS');
       
-    //   if (storedChats) {
-    //     this.chats= JSON.parse(storedChats);
-    //     let chatContent = '';
-    //     /*this.cards[this.currentIndex].description = this.chats[this.currentIndex].input + ' ' + this.chats[this.currentIndex].output;*/
-    //     for (let i = 0; i < this.chats.length; i++) {
-    //       chatContent += '<b>' + this.chats[i].input + '</b>'+ '<br>' + this.chats[i].output + '<br>';
-    //     }
-    //     this.addCollection(this.chats[currentIndex].input, this.chats[currentIndex].output)
-    //     this.cards[this.currentIndex].description = chatContent;
-    //   }
-    //   this.chatLogService.chats = this.chats;
-    //   currentIndex++;
-    //   /*
-    //   this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
-    //   this.showCollection = true;
-    //   */
+    }
+
+    
+
+    /*
+     verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
+
+       const storedChats = localStorage.getItem('chatsS');
+      
+       if (storedChats) {
+         this.chats= JSON.parse(storedChats);
+         let chatContent = '';
+         //this.cards[this.currentIndex].description = this.chats[this.currentIndex].input + ' ' + this.chats[this.currentIndex].output;
+         for (let i = 0; i < this.chats.length; i++) {
+           chatContent += '<b>' + this.chats[i].input + '</b>'+ '<br>' + this.chats[i].output + '<br>';
+        }
+         this.addCollection(this.chats[currentIndex].input, this.chats[currentIndex].output)
+         this.cards[this.currentIndex].description = chatContent;
+       }
+       this.chatLogService.chats = this.chats;
+       currentIndex++;
+       
+       //this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
+       //this.showCollection = true;
+       
   
-    //   console.log("This is this.chats")
-    //   console.log(this.chats)
+       console.log("This is this.chats")
+       console.log(this.chats)
   
-    //   this.chatLogService.chats = this.chats
-    //   console.log("This is chatLogService")
-    //   console.log(this.chatLogService.chats)
+       this.chatLogService.chats = this.chats
+       console.log("This is chatLogService")
+       console.log(this.chatLogService.chats)
   
     
-    //   console.log("This is localStorage")
-    //   console.log(localStorage.getItem('chatsS'));
+       console.log("This is localStorage")
+       console.log(localStorage.getItem('chatsS'));
      
-    // }
+     } */
 
     addCollection(title: string, description: string): void{
       this.newCards.push({title, description})
