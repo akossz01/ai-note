@@ -5,13 +5,24 @@
         <i class="fa-solid fa-image" (click)="getImage()"></i>
     </div>
     <input type="text" [(ngModel)]="inputValue" placeholder="Type or record your prompt...">
-    <i class="fa-solid fa-paper-plane" (click)="getResponse()"></i>
+    <i class="fa-solid fa-paper-plane" (click)="getResponse()"></i>    
+
+    <!-- <button (click)="saveChats()">Add collection</button> 
+    <button id="posButt" (click)="saveChats()">Add collection</button> -->
+
+
+    <!--
+    <button id="posButt" (click)="saveChats()">Add collection</button>
 
     <button id="posButt" (click)="verCollection()">Check Collection</button>
+    -->
+    
+
     
 </div>
 
-<div class="chat-container" *ngIf="showChats && showCollection">
+<!--
+<div class="chat-container" >*ngIf="showChats && showCollection"
   <div *ngFor="let chat of chatLogService.chats">
     <div *ngIf="!chat.isImage">
       <div class="question">{{ chat.input }}</div>
@@ -22,7 +33,7 @@
     </div>
   </div>
 </div>
-
+-->
   
   
 <!-- <button (click)="getChats()">Get Chats</button> -->

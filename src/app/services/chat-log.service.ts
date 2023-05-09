@@ -70,20 +70,4 @@ export class ChatLogService {
     }
   }
 
-  /*
-  public saveChats(): void {
-    const storedChats = localStorage.getItem(this.CHATS_KEY);
-    if (storedChats) {
-      // convertim istoricul chat-ului în format JSON și îl descărcăm ca fișier text
-      const chatBlob = new Blob([storedChats], { type: 'text/plain;charset=utf-8' });
-      FileSaver.saveAs(chatBlob, 'chatlog.json');
-
-      // afișăm istoricul chat-ului dacă showCollection este setat la true
-      if (this.showCollection) {
-        this.showChats = true;
-      }
-    }
-  }
-  */
-  
 }

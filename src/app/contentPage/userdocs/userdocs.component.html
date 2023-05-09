@@ -1,20 +1,15 @@
 
 
 <div class="sidebar">
+  <button id="posButt" (click)="getCurrent(currentIndex); currentIndex=currentIndex+1">Check Collection</button>
   <div  *ngFor="let card of cards; let i = index" class="card-wrapper">
-    <button id="posButt" (click)="getCurrent()">Check Collection</button>
-    <div class="chat-container" >
-      <div *ngFor="let chat of chatLogService.chats">
-        <div *ngIf="!card.chat">
-          <div class="question">{{ chat.input }}</div>
-          <div class="answer">{{ chat.output }}</div>
-        </div>
-          <div *ngIf="chat.isImage">
-            <img [src]="chat.output" alt="Image">
+          <p class="card-text" [innerHTML]="card.description"></p>
+          <div *ngFor="let chat of chatLogService.chats">
+            
+            <div *ngIf="chat.isImage">
+              <img [src]="chat.output" alt="Image">
+            </div>
           </div>
-      </div>
-    </div>
-
     
 
     <div class="card-title content">

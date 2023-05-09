@@ -22,15 +22,16 @@ export interface CardObject {
 
 export class UserdocsComponent {
 
-  constructor( public chatLogService: ChatLogService){}
-  content: string | undefined;
+  private readonly cardKey= 'cardKey'
 
-  /*indexCards = 0;*/
+  constructor( public chatLogService: ChatLogService){
+    localStorage.setItem('cardKey', 'cards')
+  }
+  content: string | undefined;
 
   countCards(cardIndex : number){
 
   }
-
 
 
   public cards: CardObject[] = [
@@ -40,6 +41,8 @@ export class UserdocsComponent {
     {title: 'content4', description: 'fourth saved content', chat: this.chatLogService},
     {title: 'content5', description: 'fifth saved content', chat: this.chatLogService}
   ];
+
+  public newCards: {title: string, description: string}[] = []
   
   isEditing = [false, false, false, false, false];
   currentCardIndex = 0;
@@ -82,51 +85,63 @@ export class UserdocsComponent {
     public currentIndex: number = 0;
     public currentMessageIndex = 0;
 
-  // verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
+    getCurrent(currentIndex: number): void{
+      const storedChats = localStorage.getItem('chatsS'); //for
+      
+      if (storedChats) {
+        this.chats= JSON.parse(storedChats);
+        let chatContent = '';
+        
+        for (let i = 0; i < this.chats.length; i++) {
+          chatContent += '<b>' + this.chats[i].input + '</b>'+ '<br>' + this.chats[i].output + '<br>';
+        }
 
-  //   const storedChats = localStorage.getItem('chatsS');
-  //   if (storedChats) {
-  //     this.chats[0] = JSON.parse(storedChats);
-  //   }
-    
-  //   /*
-  //   this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
-  //   this.showCollection = true;
-  //   */
-
-  //   console.log("This is this.chats")
-  //   console.log(this.chats)
-
-  //   this.chatLogService.chats = this.chats
-  //   console.log("This is chatLogService")
-  //   console.log(this.chatLogService.chats)
-
-  
-  //   console.log("This is localStorage")
-  //   console.log(localStorage.getItem('chatsS')); 
-  // }
-  
-  getCurrent() : void {
-    console.log('first')
-    console.log(this.currentCardIndex)
-    console.log(this.chats[this.currentCardIndex])
-    console.log(this.cards[this.currentCardIndex].chat.chats)
-
-    
-    if (this.cards[this.currentCardIndex].chat.chats){
-      const storedChats = localStorage.getItem('chatsS');
-      if(storedChats){
-        this.cards[this.currentCardIndex].chat.chats = JSON.parse(storedChats)
-        this.currentCardIndex += 1
-        console.log('in if')
-        console.log(storedChats)
-        console.log(this.cards[this.currentCardIndex].chat.chats)
+        this.addCollection(this.chats[currentIndex].input, this.chats[currentIndex].output)
+        this.cards[this.currentIndex].description = chatContent;
+        this.updateCardStorage()
       }
+      this.chatLogService.chats = this.chats;
+      currentIndex++;
     }
 
-    console.log('after')
-    console.log(this.currentCardIndex)
-    console.log(this.cards[this.currentCardIndex-1])
+    private updateCardStorage(): void{
+      localStorage.setItem('cardKey', JSON.stringify(this.cards))
+    }
+    // verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
+
+    //   const storedChats = localStorage.getItem('chatsS');
+      
+    //   if (storedChats) {
+    //     this.chats= JSON.parse(storedChats);
+    //     let chatContent = '';
+    //     /*this.cards[this.currentIndex].description = this.chats[this.currentIndex].input + ' ' + this.chats[this.currentIndex].output;*/
+    //     for (let i = 0; i < this.chats.length; i++) {
+    //       chatContent += '<b>' + this.chats[i].input + '</b>'+ '<br>' + this.chats[i].output + '<br>';
+    //     }
+    //     this.addCollection(this.chats[currentIndex].input, this.chats[currentIndex].output)
+    //     this.cards[this.currentIndex].description = chatContent;
+    //   }
+    //   this.chatLogService.chats = this.chats;
+    //   currentIndex++;
+    //   /*
+    //   this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
+    //   this.showCollection = true;
+    //   */
+  
+    //   console.log("This is this.chats")
+    //   console.log(this.chats)
+  
+    //   this.chatLogService.chats = this.chats
+    //   console.log("This is chatLogService")
+    //   console.log(this.chatLogService.chats)
+  
     
-  }
+    //   console.log("This is localStorage")
+    //   console.log(localStorage.getItem('chatsS'));
+     
+    // }
+
+    addCollection(title: string, description: string): void{
+      this.newCards.push({title, description})
+    } 
 }
