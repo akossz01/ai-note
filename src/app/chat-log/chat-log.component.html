@@ -10,27 +10,28 @@
 </div> -->
 <input class="downloadButton" type="button" value="Download PDF" (click)="savePDF()">
 <div class="container" id="content" #content>
-    <div class="chat-container">
-        <div *ngFor="let chat of chats" class="chat-log" [class.editing]="this.editing" (dblclick)="editChat(chat)">
-            <ng-container *ngIf="!this.editing; else quillEditor">
-              <ng-container *ngIf="chat.isImage || chat.output.includes('<')">
-                <ng-container *ngIf="chat.isImage">
-                  <img class="output-msg" [src]="chat.output" alt="image response">
-                </ng-container>
-                <ng-container *ngIf="!chat.isImage">
-                  <div class="input-msg" [innerHTML]="chat.input"></div>
-                  <div class="output-msg" [innerHTML]="chat.output"></div>
-                </ng-container>
-              </ng-container>
-              <ng-container *ngIf="!chat.isImage && !chat.output.includes('<')">
-                <p class="input-msg">{{ chat.input }}</p>
-                <p class="output-msg">{{ chat.output }}</p>
-              </ng-container>
-            </ng-container>
-            <ng-template #quillEditor>
-              <quill-editor class="ql-container" [(ngModel)]="chat.output"></quill-editor>
-              <button (click)="saveChat(chat)" class="saveButton">Save</button>
-            </ng-template>
-          </div>
+  <div class="chat-container">
+    <div *ngFor="let chat of chats" class="chat-log" [class.editing]="editing === chat" (dblclick)="editChat(chat)">
+      <ng-container *ngIf="!editing || editing !== chat; else quillEditor">
+        <ng-container *ngIf="chat.isImage || chat.output.includes('<')">
+          <ng-container *ngIf="chat.isImage">
+            <img class="output-msg" [src]="chat.output" alt="image response" />
+          </ng-container>
+          <ng-container *ngIf="!chat.isImage">
+            <div class="input-msg" [innerHTML]="chat.input"></div>
+            <div class="output-msg" [innerHTML]="chat.output"></div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!chat.isImage && !chat.output.includes('<')">
+          <p class="input-msg">{{ chat.input }}</p>
+          <p class="output-msg">{{ chat.output }}</p>
+        </ng-container>
+      </ng-container>
+      <ng-template #quillEditor>
+        <quill-editor class="ql-container" [(ngModel)]="chat.output"></quill-editor>
+        <button (click)="saveChat(chat)" class="saveButton">Save</button>
+      </ng-template>
     </div>
+  </div>
 </div>
+

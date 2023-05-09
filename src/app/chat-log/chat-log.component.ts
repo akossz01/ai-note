@@ -9,26 +9,27 @@ import * as Quill from 'quill';
   styleUrls: ['./chat-log.component.css']
 })
 export class ChatLogComponent {
-  editing = false;
+  editing1 = false;
   public chats: { input: string; output: string; isImage: boolean;}[] = [];
   selectedChat: { input: string; output: string; isImage: boolean; } | undefined;
 
-  public editingChat: any = null;
+  public editing: { input: string; output: string; isImage: boolean } | null = null;
 
   startEditing(chat: any) {
-    this.editingChat = chat;
+    this.editing = chat;
   }
 
   saveEditing() {
-    this.editingChat = null;
+    this.editing = null;
   }
 
   editChat(chat: any) {
-    this.editing = true;
+    this.editing = chat;
 }
 
 saveChat(chat: any) {
-  this.editing = false;
+  chat.output = this.editing!.output;
+  this.editing = null;
 }
 
   constructor(private chatService: ChatLogService, private pdfService: PdfService) { }
