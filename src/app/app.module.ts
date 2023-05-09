@@ -31,6 +31,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { MyPagesComponent } from './my-pages/my-pages.component';
+import { PageListComponent } from './page-list/page-list.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     LoginComponent,
     SpeechDemoComponent,
     NewChatComponent,
+    MyPagesComponent,
+    PageListComponent,
   ],
   imports: [
     BrowserModule,

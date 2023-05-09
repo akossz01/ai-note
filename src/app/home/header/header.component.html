@@ -12,7 +12,7 @@
 <div class="mobile-menu">
     <ul>
         <li (click)="createPage()">Create Page</li>
-        <li (click)="readLogsFromLocalStorage()">My Pages</li>
+        <li routerLink="my-pages">My Pages</li>
         <li>About</li>
         <li><i class="fa-solid fa-user"></i>Account</li>
         <li *ngIf="logCheck()" (click)="signout()">Sign out</li>
@@ -23,7 +23,7 @@
     <img src="https://i.imgur.com/CXtvBMY.png" routerLink="new-chat" alt="">
     <ul>
         <li (click)="createPage()">Create Page</li>
-        <li (click)="readLogsFromLocalStorage()">My Pages</li>
+        <li routerLink="my-pages">My Pages</li>
         <li>About</li>
         <li><i class="fa-solid fa-user"></i>Account</li>
         <li *ngIf="logCheck()" (click)="signout()">Sign out</li>

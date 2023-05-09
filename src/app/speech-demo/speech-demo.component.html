@@ -5,7 +5,7 @@
         <i class="fa-solid fa-message" (click)="getText()"></i>
         <i class="fa-solid fa-image" (click)="getImage()"></i>
     </div>
-    <input type="text" [(ngModel)]="inputValue" placeholder="Type or record your prompt...">
+    <input (keydown.enter)="getResponse()" type="text" [(ngModel)]="inputValue" placeholder="Type or record your prompt...">
     <i class="fa-solid fa-paper-plane" (click)="getResponse()"></i>
 </div>
 <!-- <button (click)="getChats()">Get Chats</button> -->

@@ -78,7 +78,4 @@ export class HeaderComponent {
     /* this.pageService.createPage(); */
     this.pageService.createPage();
   }
-  readLogsFromLocalStorage() {
-    /* this.pageService.readLogsFromLocalStorage(); */
-  }
 }

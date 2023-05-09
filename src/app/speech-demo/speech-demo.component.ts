@@ -78,6 +78,10 @@ export class SpeechDemoComponent {
       this.inputValue = '';
       window.location.reload();
       return;
+    } else if(this.inputValue === '/deletepages')  {
+      localStorage.removeItem('savedPages');
+      this.inputValue = '';
+      window.location.reload();
     } else if (this.getResponsePressed){
       console.log("Generating reply...")
       this.inputService.getTextResponse(this.inputValue).subscribe(response => {
