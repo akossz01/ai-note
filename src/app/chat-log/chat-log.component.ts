@@ -11,6 +11,17 @@ import * as Quill from 'quill';
 export class ChatLogComponent {
   editing = false;
   public chats: { input: string; output: string; isImage: boolean;}[] = [];
+  selectedChat: { input: string; output: string; isImage: boolean; } | undefined;
+
+  public editingChat: any = null;
+
+  startEditing(chat: any) {
+    this.editingChat = chat;
+  }
+
+  saveEditing() {
+    this.editingChat = null;
+  }
 
   editChat(chat: any) {
     this.editing = true;

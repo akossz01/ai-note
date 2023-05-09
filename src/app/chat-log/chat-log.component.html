@@ -8,7 +8,7 @@
     <p class="input-msg">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure.</p>
     <p class="output-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quos aut.</p>
 </div> -->
-<input type="button" value="Download PDF" class="btn btn-success" (click)="savePDF()">
+<input class="downloadButton" type="button" value="Download PDF" (click)="savePDF()">
 <div class="container" id="content" #content>
     <div class="chat-container">
         <div *ngFor="let chat of chats" class="chat-log" [class.editing]="this.editing" (dblclick)="editChat(chat)">
@@ -28,9 +28,9 @@
               </ng-container>
             </ng-container>
             <ng-template #quillEditor>
-              <quill-editor [(ngModel)]="chat.output"></quill-editor>
-              <button (click)="saveChat(chat)">Save</button>
+              <quill-editor class="ql-container" [(ngModel)]="chat.output"></quill-editor>
+              <button (click)="saveChat(chat)" class="saveButton">Save</button>
             </ng-template>
-          </div>          
+          </div>
     </div>
 </div>
