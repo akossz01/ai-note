@@ -2,7 +2,7 @@
 
 <div class="sidebar">
   <button id="posButt" (click)="getCurrent(currentIndex); currentIndex=currentIndex+1">Check Collection</button>
-  <div  *ngFor="let card of cards; let i = index" class="card-wrapper">
+  <div  *ngFor="let card of newCards; let i = index" class="card-wrapper">
           <p class="card-text" [innerHTML]="card.description"></p>
           <div *ngFor="let chat of chatLogService.chats">
             

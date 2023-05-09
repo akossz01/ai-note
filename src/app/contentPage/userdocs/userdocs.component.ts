@@ -6,7 +6,6 @@ import { identity } from 'rxjs';
 export interface CardObject {
   title: string;
   description?: string;
-  chat: ChatLogService;
 }
 
 @Component({
@@ -24,8 +23,13 @@ export class UserdocsComponent {
 
   private readonly cardKey= 'cardKey'
 
+  private readonly allCardKey = 'allCardKey'
+
   constructor( public chatLogService: ChatLogService){
+    
     localStorage.setItem('cardKey', 'cards')
+
+
   }
   content: string | undefined;
 
@@ -35,14 +39,15 @@ export class UserdocsComponent {
 
 
   public cards: CardObject[] = [
-    {title: 'content1', description: 'first saved content', chat: this.chatLogService},
-    {title: 'content2', description: 'second saved content', chat: this.chatLogService},
-    {title: 'content3', description: 'third saved content', chat: this.chatLogService},
-    {title: 'content4', description: 'fourth saved content', chat: this.chatLogService},
-    {title: 'content5', description: 'fifth saved content', chat: this.chatLogService}
+    {title: 'content1', description: 'first saved content'},
+    {title: 'content2', description: 'second saved content'},
+    {title: 'content3', description: 'third saved content'},
+    {title: 'content4', description: 'fourth saved content'},
+    {title: 'content5', description: 'fifth saved content'}
   ];
 
-  public newCards: {title: string, description: string}[] = []
+  public newCards: CardObject[] = []
+  public allCards: CardObject[] = []
   
   isEditing = [false, false, false, false, false];
   currentCardIndex = 0;
@@ -86,62 +91,44 @@ export class UserdocsComponent {
     public currentMessageIndex = 0;
 
     getCurrent(currentIndex: number): void{
-      const storedChats = localStorage.getItem('chatsS'); //for
+      const storedChats = localStorage.getItem('chatsS');
       
       if (storedChats) {
         this.chats= JSON.parse(storedChats);
         let chatContent = '';
-        
+
+        console.log()
+        console.log(this.chats)
+
         for (let i = 0; i < this.chats.length; i++) {
           chatContent += '<b>' + this.chats[i].input + '</b>'+ '<br>' + this.chats[i].output + '<br>';
         }
 
-        this.addCollection(this.chats[currentIndex].input, this.chats[currentIndex].output)
+        console.log('ChatContent')
+        console.log(chatContent)
+
+        
         this.cards[this.currentIndex].description = chatContent;
-        this.updateCardStorage()
+        this.cards[this.currentIndex].title = this.chats[this.currentIndex].input
+        this.addCollection(this.cards[this.currentIndex])
+
+        console.log('This cards')
+        console.log(this.cards[this.currentIndex])
+        this.updateCardStorage()  
       }
+      
       this.chatLogService.chats = this.chats;
       currentIndex++;
     }
 
     private updateCardStorage(): void{
-      localStorage.setItem('cardKey', JSON.stringify(this.cards))
+      // localStorage.setItem('cardKey', JSON.stringify(this.newCards))
+
+      localStorage.setItem(this.cardKey, JSON.stringify(this.allCards));
+
     }
-    // verCollection(currentIndex: number): void{ // trebuie sa se actualizeze dupa fiecare adaugare in session
-
-    //   const storedChats = localStorage.getItem('chatsS');
-      
-    //   if (storedChats) {
-    //     this.chats= JSON.parse(storedChats);
-    //     let chatContent = '';
-    //     /*this.cards[this.currentIndex].description = this.chats[this.currentIndex].input + ' ' + this.chats[this.currentIndex].output;*/
-    //     for (let i = 0; i < this.chats.length; i++) {
-    //       chatContent += '<b>' + this.chats[i].input + '</b>'+ '<br>' + this.chats[i].output + '<br>';
-    //     }
-    //     this.addCollection(this.chats[currentIndex].input, this.chats[currentIndex].output)
-    //     this.cards[this.currentIndex].description = chatContent;
-    //   }
-    //   this.chatLogService.chats = this.chats;
-    //   currentIndex++;
-    //   /*
-    //   this.showChats = true; // setează variabila showChats pentru a afișa chat-ul
-    //   this.showCollection = true;
-    //   */
   
-    //   console.log("This is this.chats")
-    //   console.log(this.chats)
-  
-    //   this.chatLogService.chats = this.chats
-    //   console.log("This is chatLogService")
-    //   console.log(this.chatLogService.chats)
-  
-    
-    //   console.log("This is localStorage")
-    //   console.log(localStorage.getItem('chatsS'));
-     
-    // }
-
-    addCollection(title: string, description: string): void{
-      this.newCards.push({title, description})
+    addCollection(card: CardObject): void{
+      this.newCards.push(card)
     } 
 }
