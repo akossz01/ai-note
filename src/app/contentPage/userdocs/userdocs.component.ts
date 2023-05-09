@@ -16,7 +16,7 @@ interface CardObject {
 export class UserdocsComponent implements OnInit, OnDestroy {
 
   cards: CardObject[] = [];
-  private savedChatSubscription: Subscription;
+  private savedChatSubscription!: Subscription;
 
 
   constructor(private savedChatService: SavedChatService ) {}
