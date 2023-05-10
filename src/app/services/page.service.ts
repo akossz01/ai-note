@@ -41,7 +41,8 @@ export class PageService {
 
     const savedPages = JSON.parse(localStorage.getItem('savedPages') || '[]');
     const newPageId = savedPages.length + 1; // generate a new ID for the new page using a library like uuid
-    savedPages.push({ id: newPageId, logs }); // save the logs under a new page ID
+    const title = 'Page ' + newPageId;
+    savedPages.push({ id: newPageId, title: title, logs }); // save the logs under a new page ID
     console.log(newPageId);
     
     localStorage.setItem('savedPages', JSON.stringify(savedPages));

@@ -13,7 +13,7 @@ export class ChatLogService {
 
   constructor() {
     // Load chats and images from local storage on initialization
-    const storedChats = localStorage.getItem(this.CHATS_KEY);
+    const storedChats = sessionStorage.getItem(this.CHATS_KEY);
     if (storedChats) {
       this.chats = JSON.parse(storedChats);
     }
@@ -22,7 +22,7 @@ export class ChatLogService {
   public addChat(input: string, output: string, isImage: boolean = false): void {
     this.chats.push({ input, output, isImage});
 
-    localStorage.setItem(this.CHATS_KEY, JSON.stringify(this.chats));
+    sessionStorage.setItem(this.CHATS_KEY, JSON.stringify(this.chats));
   }
 
   /* public addImg(imgLink: string): void {
@@ -32,13 +32,13 @@ export class ChatLogService {
   public addImg(input: string, output: string, isImage: boolean = true): void {
     this.chats.push({ input, output, isImage});
 
-    localStorage.setItem(this.CHATS_KEY, JSON.stringify(this.chats));
+    sessionStorage.setItem(this.CHATS_KEY, JSON.stringify(this.chats));
   }
 
   public clearChats(): void {
     this.chats = [];
 
-    localStorage.removeItem(this.CHATS_KEY);
+    sessionStorage.removeItem(this.CHATS_KEY);
   }
 
   /* getChats(): { input: string, output: string }[] {

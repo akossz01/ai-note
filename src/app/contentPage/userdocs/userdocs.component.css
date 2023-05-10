@@ -11,6 +11,7 @@
     z-index: 0;
 
     width: 100%;
+    overflow-y: scroll;
 }
   
 .sidebar {
@@ -23,11 +24,16 @@ mat-card{
     background-color: #23395d;
     border-right: 2px solid white;
     margin-bottom: 10px;
-    left: 3%;
-    right: 2%;
+/*     left: 3%;
+    right: 2%; */
     cursor: pointer;
 
     width: 220px;
+}
+
+mat-card:hover {
+    margin-left: 5px;
+    transition: all 0.2s ease-in;
 }
 
 mat-icon {
@@ -138,11 +144,35 @@ mat-icon {
         top: 90px;
         left: 0;
         bottom: 0;
-        width: 220px !important;
+        width: 240px !important;
         z-index: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
     
     mat-card {
         width: 100%;
     }
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #152238;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    /* background: #888; */
+    background: #f78a31;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

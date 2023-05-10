@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'new-chat', component: NewChatComponent, ...canActivate(redirectToLogin)},
   {path: 'login', component: LoginComponent, ...canActivate(redirectToHome)},
   {path: '', component: NewChatComponent, ...canActivate(redirectToLogin)},
-  {path: 'my-pages', component: MyPagesComponent},
+  {path: 'my-pages', component: MyPagesComponent, ...canActivate(redirectToLogin)},
 ];
 
 @NgModule({

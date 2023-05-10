@@ -68,10 +68,15 @@ export class HeaderComponent {
   }
   
   logCheck() {
-    if (localStorage.getItem('loggedIn')) {
+    const isLoggedIn = localStorage.getItem('loggedIn');
+    if (isLoggedIn === 'true') {
       return true;
     }
     return false;
+    /* if (localStorage.getItem('loggedIn')) {
+      return true;
+    }
+    return false; */
   }
 
   createPage() {

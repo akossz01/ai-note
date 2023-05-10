@@ -74,7 +74,6 @@ export class LoginComponent implements OnInit{
 
   login() {
     const {email, password} = this.loginForm.value;
-    console.log(email + ' ' + password);
     
     this.auth.login(email!, password!).subscribe(() => {
       this.snackBar.open('Login Successful','',{duration:1000});

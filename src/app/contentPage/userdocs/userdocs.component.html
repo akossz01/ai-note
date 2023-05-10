@@ -27,13 +27,14 @@
         <mat-card *ngFor="let page of pages; let i = index" fxLayout="row" fxLayoutAlign="end center" (click)="storePageId(page.id)">
             <mat-card-title class="content">
                 <span *ngIf="!isEditing[i]">
-                    Page {{ page.id }}
+                    <!-- Page {{ page.id }} -->
+                    {{page.title}}
                 </span>
                 <mat-icon class="edit"  (click)="editContent(i)" *ngIf="!isEditing[i]; else editField"> edit </mat-icon>
                 <ng-template #editField>
-                    <input [(ngModel)]="page.id" (keyup.enter)="finalizeRename(i)" (blur)="finalizeRename(i)" />
+                    <input [(ngModel)]="page.title" (keyup.enter)="finalizeRename(i)" (blur)="finalizeRename(i)" />
                 </ng-template>
-                <mat-icon class="delete">delete_outline</mat-icon>
+                <mat-icon class="delete" (click)="deleteCard()">delete_outline</mat-icon>
             </mat-card-title>
         </mat-card>
     </div>
