@@ -16,7 +16,6 @@ import { LoginComponent } from './home/login/login.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
-
 import { HeaderComponent } from './home/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,6 +33,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { MyPagesComponent } from './my-pages/my-pages.component';
 import { UserdocsComponent } from './contentPage/userdocs/userdocs.component';
 
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -66,6 +66,7 @@ import { UserdocsComponent } from './contentPage/userdocs/userdocs.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    QuillModule
   ],
 
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
