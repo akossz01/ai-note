@@ -1,0 +1,55 @@
+<!-- <div class="sidebar">
+ 
+    <mat-card *ngFor="let card of cards; let i = index" fxLayout="row" fxLayoutAlign="end center">
+
+        <mat-card-title class="content">
+            <span *ngIf="!isEditing[i]">
+
+                {{ card.title }}
+            </span>
+            <mat-icon class="edit"  (click)="editContent(i)" *ngIf="!isEditing[i]; else editField"> edit </mat-icon>
+            <ng-template #editField>
+                <input [(ngModel)]="card.title" (keyup.enter)="finalizeRename(i)" (blur)="finalizeRename(i)" />
+            </ng-template>
+            <mat-icon class="delete" (click)="deleteCard(card)">delete_outline</mat-icon>
+        
+        </mat-card-title>
+
+    </mat-card>
+
+</div> -->
+
+<div class="user-pages">
+    <!-- <div class="pages-btn" (click)="showPagesList()">Pages</div> -->
+    <i class="pages-btn fa-solid fa-file" (click)="showPagesList()"></i>
+
+    <div class="sidebar">
+        <mat-card *ngFor="let page of pages; let i = index" fxLayout="row" fxLayoutAlign="end center" (click)="storePageId(page.id)">
+            <mat-card-title class="content">
+                <span *ngIf="!isEditing[i]">
+                    Page {{ page.id }}
+                </span>
+                <mat-icon class="edit"  (click)="editContent(i)" *ngIf="!isEditing[i]; else editField"> edit </mat-icon>
+                <ng-template #editField>
+                    <input [(ngModel)]="page.id" (keyup.enter)="finalizeRename(i)" (blur)="finalizeRename(i)" />
+                </ng-template>
+                <mat-icon class="delete">delete_outline</mat-icon>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    
+    <div *ngFor="let page of pages">
+        <div class="my-page" *ngIf="page.id == getPageId()">
+            <div *ngFor="let log of page.logs" class="logs">
+            <p class="input-msg">{{ log.input }}</p>
+            <ng-container *ngIf="log.isImage; else textOutput">
+                <img class="output-msg" [src]="log.output" alt="image response">
+            </ng-container>
+            <ng-template #textOutput>
+                <p class="output-msg">{{ log.output }}</p>
+            </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+  

@@ -1,0 +1,148 @@
+.sidebar {
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    position: fixed;
+    top: 90px;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+
+    width: 100%;
+}
+  
+.sidebar {
+    background-color: #152238;
+    border-right: 1px solid white;
+}
+  
+mat-card{
+    color: white;
+    background-color: #23395d;
+    border-right: 2px solid white;
+    margin-bottom: 10px;
+    left: 3%;
+    right: 2%;
+    cursor: pointer;
+
+    width: 220px;
+}
+
+mat-icon {
+    position: relative;
+}
+
+.content{
+    padding: 10px;
+}
+
+.edit{
+    position: relative;
+    left:180px;
+    margin-left: -100px;
+}
+
+.delete{
+    position: relative;
+    left:190px;
+}
+
+
+
+
+.pages-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #152238;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    font-size: 42px;
+    font-weight: bold;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0 0 10px 10px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.user-pages {
+    overflow-x: hidden;
+}
+
+.my-page {
+    display: block;
+    width: 100%;
+}
+
+.input-msg, .output-msg {
+    margin-top: 10px;
+    padding: 15px;
+
+    color: white;
+    background: var(--dark-blue);
+
+    max-width: 300px;
+}
+
+.logs {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: auto;
+}
+
+.input-msg {
+    background-color: var(--dark-blue);
+    padding: 10px;
+    margin: 5px;
+    margin-right: 25px;
+    border-radius: 5px;
+    align-self: flex-end;
+}
+  
+.output-msg {
+    background-color: #f78a31;
+    padding: 10px;
+    margin: 5px;
+    margin-left: 25px;
+    border-radius: 5px;
+    align-self: flex-start;
+}
+
+/* img {
+
+} */
+
+@media screen and (min-width: 600px) {
+    .pages-btn {
+        display: none;
+    }
+
+    .my-page {
+        margin-bottom: 130px;
+        margin-left: 110px;
+        display: block;
+        width: 100%;
+    }
+
+    .sidebar {
+        display: block;
+        position: fixed;
+        top: 90px;
+        left: 0;
+        bottom: 0;
+        width: 220px !important;
+        z-index: 0;
+    }
+    
+    mat-card {
+        width: 100%;
+    }
+}

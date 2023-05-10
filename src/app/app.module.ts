@@ -32,7 +32,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { MyPagesComponent } from './my-pages/my-pages.component';
-import { PageListComponent } from './page-list/page-list.component';
+import { UserdocsComponent } from './contentPage/userdocs/userdocs.component';
 
 
 @NgModule({
@@ -46,7 +46,7 @@ import { PageListComponent } from './page-list/page-list.component';
     SpeechDemoComponent,
     NewChatComponent,
     MyPagesComponent,
-    PageListComponent,
+    UserdocsComponent,
   ],
   imports: [
     BrowserModule,
